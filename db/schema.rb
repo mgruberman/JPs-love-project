@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110418080947) do
+ActiveRecord::Schema.define(:version => 20110418083458) do
 
   create_table "badges", :force => true do |t|
     t.string   "name"
@@ -55,8 +55,8 @@ ActiveRecord::Schema.define(:version => 20110418080947) do
     t.string   "city"
     t.string   "state"
     t.string   "zipcode"
-    t.integer  "latitude"
-    t.integer  "longitude"
+    t.float    "latitude"
+    t.float    "longitude"
     t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"

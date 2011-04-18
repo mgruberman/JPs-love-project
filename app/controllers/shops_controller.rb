@@ -2,7 +2,8 @@ class ShopsController < ApplicationController
   # GET /shops
   # GET /shops.xml
   def index
-    @shops = Shop.all
+    	@shops = Shop.all
+    	@json = Shop.all.to_gmaps4rails
 
     respond_to do |format|
       format.html # index.html.erb

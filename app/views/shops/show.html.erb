@@ -1,5 +1,30 @@
 <p id="notice"><%= notice %></p>
 
+<p>
+  <b>Name:</b>
+  <%= @shop.name %>
+</p>
+
+<p>
+  <b>Address:</b>
+  <%= @shop.address %>
+</p>
+
+<p>
+  <b>Longitude:</b>
+  <%= @shop.longitude %>
+</p>
+
+<p>
+  <b>Latitude:</b>
+  <%= @shop.latitude %>
+</p>
+
+<p>
+  <b>Gmaps:</b>
+  <%= @shop.gmaps %>
+</p>
+
 
 <%= link_to 'Edit', edit_shop_path(@shop) %> |
 <%= link_to 'Back', shops_path %>

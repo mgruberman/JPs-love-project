@@ -13,6 +13,8 @@
   <meta property="description" content="<%= @page_description || DEFAULT_PAGE_DESCRIPTION %>"/>
   
   <%= content_for :page_specific_head %>
+  <%= yield :head %>
+
 </head>
 <body>
 
@@ -20,6 +22,7 @@
   <div id="user_nav">
 
     <%= link_to 'Home', '/' %>
+    <%= link_to 'Shop', '/shops' %>
     <% if user_signed_in? %>
     	
     	<% if current_user.admin %>
@@ -47,6 +50,7 @@
 
 <div class="footer">
   copyright and stuff
+  <%= yield :scripts %>
 </div>
 
 <script type="text/javascript" src="http://platform.twitter.com/widgets.js">
