@@ -43,6 +43,7 @@ GEM
     bcrypt-ruby (2.1.4)
     bcrypt-ruby (2.1.4-x86-mingw32)
     builder (2.1.2)
+    crack (0.1.8)
     diff-lcs (1.1.2)
     erubis (2.6.6)
       abstract (>= 1.0.0)
@@ -52,6 +53,8 @@ GEM
       rack (>= 1.1.0, < 2)
     fixjour (0.5.3)
       activerecord
+    gmaps4rails (0.7.6)
+      crack
     i18n (0.5.0)
     json (1.5.1)
     mail (2.2.15)
@@ -176,6 +179,7 @@ PLATFORMS
 DEPENDENCIES
   devise!
   fixjour
+  gmaps4rails
   omniauth (= 0.2.0)
   paperclip
   rails (= 3.0.5)
