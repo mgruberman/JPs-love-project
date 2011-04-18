@@ -2,6 +2,9 @@
 
 <table>
   <tr>
+    <th>Shop</th>
+    <th>Description</th>
+    <th>Score</th>
     <th></th>
     <th></th>
     <th></th>
@@ -9,6 +12,9 @@
 
 <% @reviews.each do |review| %>
   <tr>
+    <td><%= review.shop_id %></td>
+    <td><%= review.description %></td>
+    <td><%= review.score %></td>
     <td><%= link_to 'Show', review %></td>
     <td><%= link_to 'Edit', edit_review_path(review) %></td>
     <td><%= link_to 'Destroy', review, :confirm => 'Are you sure?', :method => :delete %></td>

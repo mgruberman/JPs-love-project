@@ -21,21 +21,21 @@
 <div class="page_content">
   <div id="user_nav">
 
-    <%= link_to 'Home', '/' %>
-    <%= link_to 'Shop', '/shops' %>
+    <%= link_to 'Home', '/' %> |
+    <%= link_to 'Shop', '/shops' %> |
     <% if user_signed_in? %>
     	
     	<% if current_user.admin %>
-    		<%= link_to 'Admin', '#' %>
+    		<%= link_to 'Admin', '#' %> |
     	<% end %>
     	<% if current_user.reviewer %>
-    		<%= link_to 'Reviewer', '#' %>
+    		<%= link_to 'Reviews', '/reviews' %> |
     	<% end %>
-        <%= link_to 'Profile', profile_path(current_user) %>
-        <%= link_to 'Edit Profile', edit_user_registration_path(current_user) %>
+        <%= link_to 'Profile', profile_path(current_user) %> |
+        <%= link_to 'Edit Profile', edit_user_registration_path(current_user) %> |
         <%= link_to "Sign out", destroy_user_session_path %>
     <% else %>
-        <%= link_to "Sign up", new_user_registration_path %>
+        <%= link_to "Sign up", new_user_registration_path %> |
         <%= link_to "sign in", new_user_session_path %>
     <% end %>
   </div>
