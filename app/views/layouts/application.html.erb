@@ -50,9 +50,9 @@
 
 <div class="footer">
   <%= yield :scripts %>
-  <%= debug session %> 
-  <%= debug params %>
-	
+  --SESSION-- <%= debug session %> 
+  --PARAMS-- <%= debug params %>
+  --current_user-- <%= debug current_user %>
 </div>
 
 <script type="text/javascript" src="http://platform.twitter.com/widgets.js">

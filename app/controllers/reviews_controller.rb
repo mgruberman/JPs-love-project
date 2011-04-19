@@ -24,7 +24,7 @@ class ReviewsController < ApplicationController
   # GET /reviews/new
   # GET /reviews/new.xml
   def new
-    	@review = Review.new
+	@review = Review.new
 	@shop = Shop.find(:all) #for the dropdown menu, we might need to filter or sort this later. 
 	
     	respond_to do |format|

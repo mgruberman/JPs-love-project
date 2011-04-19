@@ -19,7 +19,7 @@
   
   <div class="field">
     <%= f.label :description %><br />
-    <%= f.text_field :description %>
+    <%= f.text_area :description %>
   </div>
   <div class="field">
     <%= f.label :CappuccinoScore %><br />
@@ -37,10 +37,9 @@
     <%= f.label :AtmosphereScore %><br />
     <%= f.text_field :AtmosphereScore %>
   </div>
-  <div class="field">
-    <%= f.label :user_id %><br />
-    --TODO: add this with the user session variable.
-  </div>
+
+  <%= f.hidden_field :user_id, { :value => current_user.id } %>
+    
   <div class="actions">
     <%= f.submit %>
   </div>

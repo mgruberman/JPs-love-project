@@ -15,6 +15,8 @@ class ShopsController < ApplicationController
   # GET /shops/1.xml
   def show
     @shop = Shop.find(params[:id])
+    shop_id = params[:id]
+    @reviews = Review.find(:all, :conditions => ["shop_id = :shop_id", :shop_id => shop_id])
 
     respond_to do |format|
       format.html # show.html.erb
