@@ -25,9 +25,13 @@
   <%= @shop.gmaps %>
 </p>
 
-<p>show last 3 reviews </p>
-<p>link to/expand  reviews of this shop </p>
-<%= debug @reviews %>
+<p>
+<% for r in @reviews %>
+  Date: <%= Time.at(r.created_at).strftime("%b %d, %Y") %> -- Capp Score: <%= r.CappuccinoScore %> -- Espresso Score: <%= r.EspressoScore %> --  Atmosphere Score: <%= r.AtmosphereScore %> -- Personality Score: <%= r.PersonalityScore %> -- Total Score: <%= totalScore(r) %> (<%= scoreToHundred(totalScore(r))%>)<br>
+  <%= truncate(r.description, :length => 200, :omission => '...') %> 
+  <%= link_to "(show review)", :controller => "reviews", :action => "show", :id => r %><br>
+<% end %>
+
 
 <%= link_to 'Edit', edit_shop_path(@shop) %> |
 <%= link_to 'Back', shops_path %>

@@ -13,8 +13,10 @@
 
   <div class="field">
     <%= f.label :shop_id %><br />
-    <%= collection_select("review", "shop_id", @shop, "id", "name", {:prompt => true}) %>
+    <%= debug @shopList %>
+    <%= collection_select("review", "shop_id", @shopList, "id", "name", {:prompt => true}) %>
     -- TODO: prepopulate this if the ID is passed in.
+    -- TODO: this breaks if you comeback to this page with an error.
   </div>
   
   <div class="field">

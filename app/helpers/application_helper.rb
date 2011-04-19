@@ -15,5 +15,26 @@ module ApplicationHelper
   def alert_html
     "<div class=\"alert\">#{alert}</div>" unless alert.blank?
   end
-
+  
+  def totalScore(r)
+    #this takes a Review dataset.
+    totalScore = r.AtmosphereScore + r.PersonalityScore
+    totalDenom = 2
+    if defined? r.CappuccinoScore
+      #coffee drinks are worth 4x the score
+      totalScore = totalScore + (r.CappuccinoScore * 4)
+      totalDenom = totalDenom + 4
+    end
+    if defined? r.EspressoScore
+      #coffee drinks are worth 4x the score
+      totalScore = totalScore + (r.EspressoScore * 4)
+      totalDenom = totalDenom + 4
+    end
+    totalScore = totalScore/totalDenom
+  end
+  
+  def scoreToHundred(n)
+    #this passes in a number, (should be 0-6, and returns a score from 0 - 100)
+    scoreHundred = (41*Math.sqrt(n))
+  end
 end

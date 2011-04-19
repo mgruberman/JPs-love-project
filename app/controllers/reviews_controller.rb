@@ -14,7 +14,11 @@ class ReviewsController < ApplicationController
   # GET /reviews/1.xml
   def show
     @review = Review.find(params[:id])
-
+    shop_id = @review.shop_id
+    @shop = Shop.find(shop_id)
+    user_id = @review.user_id
+    @user = User.find(user_id)
+    
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @review }
@@ -24,8 +28,8 @@ class ReviewsController < ApplicationController
   # GET /reviews/new
   # GET /reviews/new.xml
   def new
-	@review = Review.new
-	@shop = Shop.find(:all) #for the dropdown menu, we might need to filter or sort this later. 
+	  @review = Review.new
+	  @shopList = Shop.find(:all) #for the dropdown menu, we might need to filter or sort this later. 
 	
     	respond_to do |format|
       		format.html # new.html.erb
@@ -41,6 +45,7 @@ class ReviewsController < ApplicationController
   # POST /reviews
   # POST /reviews.xml
   def create
+    
     @review = Review.new(params[:review])
 
     respond_to do |format|
