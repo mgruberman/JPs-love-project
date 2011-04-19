@@ -11,9 +11,30 @@
 </p>
 
 <p>
-  <b>Score:</b>
-  <%= @review.score %>
+  <b>Cappuccinoscore:</b>
+  <%= @review.CappuccinoScore %>
 </p>
+
+<p>
+  <b>Espressoscore:</b>
+  <%= @review.EspressoScore %>
+</p>
+
+<p>
+  <b>Personalityscore:</b>
+  <%= @review.PersonalityScore %>
+</p>
+
+<p>
+  <b>Atmospherescore:</b>
+  <%= @review.AtmosphereScore %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @review.user_id %>
+</p>
+
 
 <%= link_to 'Edit', edit_review_path(@review) %> |
 <%= link_to 'Back', reviews_path %>

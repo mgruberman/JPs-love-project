@@ -5,7 +5,11 @@ describe "reviews/show.html.erb" do
     @review = assign(:review, stub_model(Review,
       :shop_id => 1,
       :description => "Description",
-      :score => ""
+      :CappuccinoScore => 1.5,
+      :EspressoScore => 1.5,
+      :PersonalityScore => 1.5,
+      :AtmosphereScore => 1.5,
+      :user_id => 1
     ))
   end
 
@@ -16,6 +20,14 @@ describe "reviews/show.html.erb" do
     # Run the generator again with the --webrat flag if you want to use webrat matchers
     rendered.should match(/Description/)
     # Run the generator again with the --webrat flag if you want to use webrat matchers
-    rendered.should match(//)
+    rendered.should match(/1.5/)
+    # Run the generator again with the --webrat flag if you want to use webrat matchers
+    rendered.should match(/1.5/)
+    # Run the generator again with the --webrat flag if you want to use webrat matchers
+    rendered.should match(/1.5/)
+    # Run the generator again with the --webrat flag if you want to use webrat matchers
+    rendered.should match(/1.5/)
+    # Run the generator again with the --webrat flag if you want to use webrat matchers
+    rendered.should match(/1/)
   end
 end

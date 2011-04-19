@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110418083458) do
+ActiveRecord::Schema.define(:version => 20110419122753) do
 
   create_table "badges", :force => true do |t|
     t.string   "name"
@@ -33,6 +33,10 @@ ActiveRecord::Schema.define(:version => 20110418083458) do
     t.integer  "score"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.float    "CappuccinoScore"
+    t.float    "EspressoScore"
+    t.float    "PersonalityScore"
+    t.float    "AtmosphereScore"
   end
 
   create_table "sharings", :force => true do |t|
