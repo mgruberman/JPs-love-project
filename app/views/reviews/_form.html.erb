@@ -13,8 +13,10 @@
 
   <div class="field">
     <%= f.label :shop_id %><br />
-    <%= f.text_field :shop_id %>
+    <%= collection_select("review", "shop_id", @shop, "id", "name", {:prompt => true}) %>
+    -- TODO: prepopulate this if the ID is passed in.
   </div>
+  
   <div class="field">
     <%= f.label :description %><br />
     <%= f.text_field :description %>
@@ -37,7 +39,7 @@
   </div>
   <div class="field">
     <%= f.label :user_id %><br />
-    <%= f.text_field :user_id %>
+    --TODO: add this with the user session variable.
   </div>
   <div class="actions">
     <%= f.submit %>

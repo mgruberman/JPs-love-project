@@ -45,12 +45,14 @@
   <%= raw alert_html %>
 
   <%= yield %>
-	<%= debug(params) %>
+	 
 </div>
 
 <div class="footer">
-  copyright and stuff
   <%= yield :scripts %>
+  <%= debug session %> 
+  <%= debug params %>
+	
 </div>
 
 <script type="text/javascript" src="http://platform.twitter.com/widgets.js">
