@@ -11,6 +11,7 @@ gem 'twitter_oauth', '0.4.3'
 gem "rest-client", "1.6.1", :require => "restclient"
 gem "sluggable"
 gem 'gmaps4rails'
+gem 'exception_notification'
 
 
 group :development, :test do
