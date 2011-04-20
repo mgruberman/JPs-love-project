@@ -24,3 +24,8 @@ require File.expand_path('../application', __FILE__)
 
 # Initialize the rails application
 OmniauthDeviseExample::Application.initialize!
+
+  config.middleware.use ExceptionNotifier,
+  :email_prefix => "[Exception] ",
+  :sender_address => %{"Exception Notifier" <errors-production@coffeecompass.com>},
+  :exception_recipients => %w{thethirddan+heroku@gmail.com}

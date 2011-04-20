@@ -33,9 +33,4 @@ OmniauthDeviseExample::Application.configure do
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
   
-  config.middleware.use ExceptionNotifier,
-  :email_prefix => "[Exception] ",
-  :sender_address => %{"Exception Notifier" <errors-test@coffeecompass.com>},
-  :exception_recipients => %w{thethirddan+heroku@gmail.com}
-  
 end
