@@ -50,5 +50,5 @@ OmniauthDeviseExample::Application.configure do
   config.middleware.use ExceptionNotifier,
   :email_prefix => "[Exception] ",
   :sender_address => %{"Exception Notifier" <errors@coffeecompass.com>},
-  :exception_recipients => %w{thethirddan-heroku@gmail.com}
+  :exception_recipients => %w{thethirddan+heroku@gmail.com}
 end
