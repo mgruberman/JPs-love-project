@@ -1,14 +1,22 @@
 <h1><%= @user.display_name %>'s Profile</h1>
 
 <%= image_tag @user.photo.url %><br/>
+<!--
 <%= image_tag @user.photo.url(:mini) %><br/>
 <%= image_tag @user.photo.url(:thumb) %><br/>
 <%= image_tag @user.photo.url(:small) %><br/>
 <%= image_tag @user.photo.url(:big) %><br/>
+-->
 
 <div>
   Name: <%= @user.name   %><br/>
   Email: <%= @user.email %><br/>
   Administrator: <%= @user.admin   %><br/>
   Reviewer: <%= @user.reviewer %><br/>
+  
+  <% for r in @reviews %>
+    Date: <%= Time.at(r.created_at).strftime("%b %d, %Y") %> <%= link_to r.shop.name, :controller => "shops", :action => "show", :id => r.shop.id %> -- Capp Score: <%= r.CappuccinoScore %> -- Espresso Score: <%= r.EspressoScore %> --  Atmosphere Score: <%= r.AtmosphereScore %> -- Personality Score: <%= r.PersonalityScore %> -- Total Score: <%= totalScore(r) %> (<%= scoreToHundred(totalScore(r))%>)<br>
+    <%= truncate(r.description, :length => 200, :omission => '...') %> 
+    <%= link_to "(show review)", :controller => "reviews", :action => "show", :id => r %><br>
+  <% end %>
 </div>

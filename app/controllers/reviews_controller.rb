@@ -37,6 +37,7 @@ class ReviewsController < ApplicationController
   # GET /reviews/1/edit
   def edit
     @review = Review.find(params[:id])
+    @shopList = Shop.find(:all) #for the dropdown menu, we might need to filter or sort this later.
   end
 
   # POST /reviews
@@ -50,6 +51,7 @@ class ReviewsController < ApplicationController
         format.html { redirect_to(@review, :notice => 'Review was successfully created.') }
         format.xml  { render :xml => @review, :status => :created, :location => @review }
       else
+        @shopList = Shop.find(:all)
         format.html { render :action => "new" }
         format.xml  { render :xml => @review.errors, :status => :unprocessable_entity }
       end

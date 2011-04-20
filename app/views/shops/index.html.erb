@@ -4,24 +4,22 @@
   <tr>
     <th>Name</th>
     <th>Address</th>
-    <th>Longitude</th>
-    <th>Latitude</th>
-    <th>Gmaps</th>
-    <th></th>
     <th></th>
     <th></th>
   </tr>
 
 <% @shops.each do |shop| %>
   <tr>
-    <td><%= shop.name %></td>
+    <td><%= link_to shop.name, shop %></td>
     <td><%= shop.address %></td>
-    <td><%= shop.longitude %></td>
-    <td><%= shop.latitude %></td>
-    <td><%= shop.gmaps %></td>
-    <td><%= link_to 'Show', shop %></td>
-    <td><%= link_to 'Edit', edit_shop_path(shop) %></td>
-    <td><%= link_to 'Destroy', shop, :confirm => 'Are you sure?', :method => :delete %></td>
+    <% if current_user.admin %>
+        <td><%= link_to 'Edit', edit_shop_path(shop) %></td>
+        <td><%= link_to 'Destroy', shop, :confirm => 'Are you sure?', :method => :delete %> TODO: change these (and all to soft deletes) </td>
+    <% else %>
+        <td> </td>
+        <td> </td>
+    <% end %>
+    
   </tr>
 <% end %>
 </table>
