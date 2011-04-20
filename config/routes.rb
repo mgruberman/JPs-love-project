@@ -8,6 +8,8 @@ OmniauthDeviseExample::Application.routes.draw do
   resources :sharings
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", :registrations => 'registrations'}
   
+  root :to => "shops#index"
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -57,7 +59,7 @@ OmniauthDeviseExample::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => "sharings#index"
+  
 
   # See how all your routes lay out with "rake routes"
 
