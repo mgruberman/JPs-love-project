@@ -35,6 +35,9 @@ module ApplicationHelper
   
   def scoreToHundred(n)
     #this passes in a number, (should be 0-6, and returns a score from 0 - 100)
-    scoreHundred = (41*Math.sqrt(n))
+    scoreHundred =  41*Math.sqrt(n)
+    #this is cloogy to round to the tenths place
+    roundScore = ((scoreHundred*10).round).to_f
+    returnScore = (roundScore/10) 
   end
 end

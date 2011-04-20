@@ -8,6 +8,7 @@
     <th>Espressoscore</th>
     <th>Personalityscore</th>
     <th>Atmospherescore</th>
+    <th>Total Score</th>
     <th>User</th>
     <th></th>
     <th></th>
@@ -16,13 +17,14 @@
 
 <% @reviews.each do |review| %>
   <tr>
-    <td><%= review.shop_id %></td>
+    <td><%= review.shop.name %></td>
     <td><%= review.description %></td>
     <td><%= review.CappuccinoScore %></td>
     <td><%= review.EspressoScore %></td>
     <td><%= review.PersonalityScore %></td>
     <td><%= review.AtmosphereScore %></td>
-    <td><%= review.user_id %></td>
+    <td><%= totalScore(review) %> (<%= scoreToHundred(totalScore(review))%>)</td>
+    <td><%= review.user.name %></td>
     <td><%= link_to 'Show', review %></td>
     <td><%= link_to 'Edit', edit_review_path(review) %></td>
     <td><%= link_to 'Destroy', review, :confirm => 'Are you sure?', :method => :delete %></td>

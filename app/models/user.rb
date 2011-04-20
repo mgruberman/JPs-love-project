@@ -18,6 +18,7 @@ class User < ActiveRecord::Base
   end
 
   has_many :sharings
+  has_many :reviews
 
   has_attached_file :photo,
                     :styles => {

@@ -2,7 +2,7 @@ class ReviewsController < ApplicationController
   # GET /reviews
   # GET /reviews.xml
   def index
-    @reviews = Review.all
+    @reviews = Review.find( :all, :include => [:user, :shop])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,11 +13,8 @@ class ReviewsController < ApplicationController
   # GET /reviews/1
   # GET /reviews/1.xml
   def show
-    @review = Review.find(params[:id])
-    shop_id = @review.shop_id
-    @shop = Shop.find(shop_id)
-    user_id = @review.user_id
-    @user = User.find(user_id)
+    @review = Review.find(params[:id], :include => [:user, :shop])
+
     
     respond_to do |format|
       format.html # show.html.erb

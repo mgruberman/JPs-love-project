@@ -2,7 +2,7 @@
 
 <p>
   <b>Shop:</b>
-  <%= link_to @shop.name, :controller => "shops", :action => "show", :id => @shop.id %>
+  <%= link_to @review.shop.name, :controller => "shops", :action => "show", :id => @review.shop.id %>
 </p>
 
 <p>
@@ -31,10 +31,15 @@
 </p>
 
 <p>
-  <b>User:</b>
-  <%= link_to @user.name, profile_path(@user) %>
+  <b>Total Score:</b>
+  <%= totalScore(@review) %> (<%= scoreToHundred(totalScore(@review))%>)
 </p>
 
+<p>
+  <b>User:</b>
+  <%= link_to @review.user.name, profile_path(@review.user) %>
+</p>
 
+<br>
 <%= link_to 'Edit', edit_review_path(@review) %> |
 <%= link_to 'Back', reviews_path %>
