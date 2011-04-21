@@ -1,8 +1,8 @@
 # Load the rails application
 DEFAULT_PAPERCLIP_OPTIONS = {}
 
-DEVISE_MAILER_FROM       = "please-change-me@example.com"
-LIVE_PERSONS_EMAIL       = 'help@example.com'
+DEVISE_MAILER_FROM       = "notify@coffeecompass.com"
+LIVE_PERSONS_EMAIL       = 'notify@coffeecompass.com'
 
 FACEBOOK_APP_ID          = "213491825331116"
 FACEBOOK_APP_SECRET      = "3bc4798fec78dc85235d543aa96e5f98"
