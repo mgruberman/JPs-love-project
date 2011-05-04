@@ -33,6 +33,20 @@ module ApplicationHelper
     totalScore = totalScore/totalDenom
   end
   
+  def shopScore(r)
+    #this takes multiple Reviews and gives you back a total score.
+    #TODO: we may need a fancier system in the future that has more weight on newer reviews?
+    scores = 0
+    denom = 0
+    for singleR in r
+      scores = scores + totalScore(singleR)
+      denom = denom + 1
+    end
+    total = scores/denom
+    roundScore = ((total*10).round).to_f
+    returnScore = (roundScore/10) 
+  end
+  
   def scoreToHundred(n)
     #this passes in a number, (should be 0-6, and returns a score from 0 - 100)
     scoreHundred =  41*Math.sqrt(n)

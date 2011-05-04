@@ -2,13 +2,14 @@
 <table>
   <tr>
     <td VALIGN=TOP>
-      <b>Name:</b> <%= @shop.name %><br>
-      <b>Address:</b> <%= @shop.address %><br>
+      <h2><%= @shop.name %></h2>
+      <h3><%= @shop.address %></h3>
+      <h3><%= scoreToHundred(shopScore(@reviews))%>/100</h3>
     </td>
     <td VALIGN=TOP>
       
       <%= gmaps("markers" => {"data" => @json, "options" => {"list_container" => "markers_list", "do_clustering" => true } },
-          "map_options" => { "id" => "gmaps4rails_shop" , "zoom" =>14, "auto_adjust" => true, "center_latitude" => @shop.latitude,  "center_longitude" => @shop.longitude}) %>
+          "map_options" => { "id" => "gmaps4rails_shop" , "zoom" =>13, "auto_adjust" => true, "center_latitude" => @shop.latitude,  "center_longitude" => @shop.longitude}) %>
     </td>
   </tr>
   <% for r in @reviews %>
