@@ -1,0 +1,14 @@
+/* coffee */
+
+tr.d0 td {
+    background-color: #FFFFFF; 
+    font-family: verdana, arial, helvetica, sans-serif;
+    font-size:   13px;
+    line-height: 18px;
+}
+tr.d1 td {
+    background-color: #e7f9ff; 
+    font-family: verdana, arial, helvetica, sans-serif;
+    font-size:   13px;
+    line-height: 18px;
+}

@@ -14,9 +14,13 @@
   Administrator: <%= @user.admin   %><br/>
   Reviewer: <%= @user.reviewer %><br/>
   
+  <table>
   <% for r in @reviews %>
+    <tr class="<%= cycle("d1","d0")%>"> <td>
     Date: <%= Time.zone.parse(r.created_at.to_s) %> <%= link_to r.shop.name, :controller => "shops", :action => "show", :id => r.shop.id %> -- Capp Score: <%= r.CappuccinoScore %> -- Espresso Score: <%= r.EspressoScore %> --  Atmosphere Score: <%= r.AtmosphereScore %> -- Personality Score: <%= r.PersonalityScore %> -- Total Score: <%= totalScore(r) %> (<%= scoreToHundred(totalScore(r))%>)<br>
     <%= truncate(r.description, :length => 200, :omission => '...') %> 
-    <%= link_to "(show review)", :controller => "reviews", :action => "show", :id => r %><br>
+    <%= link_to "(show review)", :controller => "reviews", :action => "show", :id => r %>
+    </td></tr>
   <% end %>
+ </table>
 </div>

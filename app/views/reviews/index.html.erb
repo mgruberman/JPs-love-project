@@ -16,7 +16,7 @@
   </tr>
 
 <% @reviews.each do |review| %>
-  <tr>
+  <tr class="<%= cycle("d1","d0")%>">
     <td><%= link_to review.shop.name, :controller => "shops", :action => "show", :id => review.shop.id %></td>
     <td><%= review.description %></td>
     <td><%= review.CappuccinoScore %></td>

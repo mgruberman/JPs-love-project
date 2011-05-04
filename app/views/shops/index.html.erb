@@ -9,7 +9,7 @@
   </tr>
 
 <% @shops.each do |shop| %>
-  <tr>
+  <tr class="<%= cycle("d0","d1")%>">
     <td><%= link_to shop.name, shop %></td>
     <td><%= shop.address %></td>
     <% if !current_user.nil? && current_user.admin %>

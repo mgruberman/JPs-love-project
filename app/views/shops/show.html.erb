@@ -12,7 +12,7 @@
     </td>
   </tr>
   <% for r in @reviews %>
-    <tr>
+    <tr class="<%= cycle("d1","d0")%>">
       <td colspan=2">
   Date: <%= Time.zone.parse(r.created_at.to_s) %> -- Capp Score: <%= r.CappuccinoScore %> -- Espresso Score: <%= r.EspressoScore %> --  Atmosphere Score: <%= r.AtmosphereScore %> -- Personality Score: <%= r.PersonalityScore %> -- Total Score: <%= totalScore(r) %> (<%= scoreToHundred(totalScore(r))%>)<br>
   <%= truncate(r.description, :length => 200, :omission => '...') %> 
