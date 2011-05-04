@@ -1,15 +1,28 @@
 <p id="notice"><%= notice %></p>
+<table>
+  <tr>
+    <td VALIGN=TOP>
+      <b>Name:</b> <%= @shop.name %><br>
+      <b>Address:</b> <%= @shop.address %><br>
+    </td>
+    <td VALIGN=TOP>
+      
+      <%= gmaps("markers" => {"data" => @json, "options" => {"list_container" => "markers_list", "do_clustering" => true } },
+          "map_options" => { "id" => "gmaps4rails_shop" , "zoom" =>14, "auto_adjust" => true, "center_latitude" => @shop.latitude,  "center_longitude" => @shop.longitude}) %>
+    </td>
+  </tr>
+  <% for r in @reviews %>
+    <tr>
+      <td colspan=2">
+  Date: <%= Time.zone.parse(r.created_at.to_s) %> -- Capp Score: <%= r.CappuccinoScore %> -- Espresso Score: <%= r.EspressoScore %> --  Atmosphere Score: <%= r.AtmosphereScore %> -- Personality Score: <%= r.PersonalityScore %> -- Total Score: <%= totalScore(r) %> (<%= scoreToHundred(totalScore(r))%>)<br>
+  <%= truncate(r.description, :length => 200, :omission => '...') %> 
+  <%= link_to "(show review)", :controller => "reviews", :action => "show", :id => r %>
+      </td>
+    </tr>
+<% end %>
+ </table>
 
-<p>
-  <b>Name:</b>
-  <%= @shop.name %>
-</p>
-
-<p>
-  <b>Address:</b>
-  <%= @shop.address %>
-</p>
-
+<!--
 <p>
   <b>Longitude:</b>
   <%= @shop.longitude %>
@@ -24,13 +37,7 @@
   <b>Gmaps:</b>
   <%= @shop.gmaps %>
 </p>
-
-<p>
-<% for r in @reviews %>
-  Date: <%= Time.zone.parse(r.created_at.to_s) %> -- Capp Score: <%= r.CappuccinoScore %> -- Espresso Score: <%= r.EspressoScore %> --  Atmosphere Score: <%= r.AtmosphereScore %> -- Personality Score: <%= r.PersonalityScore %> -- Total Score: <%= totalScore(r) %> (<%= scoreToHundred(totalScore(r))%>)<br>
-  <%= truncate(r.description, :length => 200, :omission => '...') %> 
-  <%= link_to "(show review)", :controller => "reviews", :action => "show", :id => r %><br>
-<% end %>
+-->
 
 <% if !current_user.nil? && current_user.admin %>
 <%= link_to 'Edit', edit_shop_path(@shop) %> |

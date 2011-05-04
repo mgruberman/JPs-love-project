@@ -1,0 +1,11 @@
+/* gmaps */
+
+#gmaps4rails_map {
+  width: 800px;
+  height: 400px;
+}
+
+#gmaps4rails_shop {
+  width: 400px;
+  height: 200px;
+}

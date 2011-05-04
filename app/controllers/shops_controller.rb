@@ -17,6 +17,8 @@ class ShopsController < ApplicationController
     @shop = Shop.find(params[:id])
     shop_id = params[:id]
     @reviews = Review.find(:all, :conditions => {:shop_id => @shop.id})
+    
+    @json = Shop.find(params[:id]).to_gmaps4rails
 
     respond_to do |format|
       format.html # show.html.erb
