@@ -27,7 +27,7 @@
 
 <p>
 <% for r in @reviews %>
-  Date: <%= Time.zone.parse(r.created_at) %> -- Capp Score: <%= r.CappuccinoScore %> -- Espresso Score: <%= r.EspressoScore %> --  Atmosphere Score: <%= r.AtmosphereScore %> -- Personality Score: <%= r.PersonalityScore %> -- Total Score: <%= totalScore(r) %> (<%= scoreToHundred(totalScore(r))%>)<br>
+  Date: <%= Time.zone.parse(r.created_at.to_s) %> -- Capp Score: <%= r.CappuccinoScore %> -- Espresso Score: <%= r.EspressoScore %> --  Atmosphere Score: <%= r.AtmosphereScore %> -- Personality Score: <%= r.PersonalityScore %> -- Total Score: <%= totalScore(r) %> (<%= scoreToHundred(totalScore(r))%>)<br>
   <%= truncate(r.description, :length => 200, :omission => '...') %> 
   <%= link_to "(show review)", :controller => "reviews", :action => "show", :id => r %><br>
 <% end %>
