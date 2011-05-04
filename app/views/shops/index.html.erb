@@ -12,7 +12,7 @@
   <tr>
     <td><%= link_to shop.name, shop %></td>
     <td><%= shop.address %></td>
-    <% if current_user.admin %>
+    <% if !current_user.nil? && current_user.admin %>
         <td><%= link_to 'Edit', edit_shop_path(shop) %></td>
         <td><%= link_to 'Destroy', shop, :confirm => 'Are you sure?', :method => :delete %> TODO: change these (and all to soft deletes) </td>
     <% else %>
