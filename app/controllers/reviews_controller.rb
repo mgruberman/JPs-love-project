@@ -76,9 +76,29 @@ class ReviewsController < ApplicationController
 
   # DELETE /reviews/1
   # DELETE /reviews/1.xml
+  #def destroy
+   # @review = Review.find(params[:id])
+   # @review.destroy
+
+   # respond_to do |format|
+   #   format.html { redirect_to(reviews_url) }
+   #   format.xml  { head :ok }
+   # end
+  #end
+  
   def destroy
     @review = Review.find(params[:id])
-    @review.destroy
+    @review.update_attribute(:isActive, false)
+
+    respond_to do |format|
+      format.html { redirect_to(reviews_url) }
+      format.xml  { head :ok }
+    end
+  end
+  
+  def activate
+    @review = Review.find(params[:id])
+    @review.update_attribute(:isActive, true)
 
     respond_to do |format|
       format.html { redirect_to(reviews_url) }

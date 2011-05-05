@@ -14,7 +14,13 @@
     <td><%= shop.address %></td>
     <% if !current_user.nil? && current_user.admin %>
         <td><%= link_to 'Edit', edit_shop_path(shop) %></td>
-        <td><%= link_to 'Destroy', shop, :confirm => 'Are you sure?', :method => :delete %> TODO: change these (and all to soft deletes) </td>
+        <td>
+            <% if !shop.isActive %>
+                <%= link_to 'Activate', activate_shops_path(shop.id) %>
+            <% else %>
+                <%= link_to 'Deactivate', shop, :confirm => 'Are you sure?', :method => :delete %>
+            <% end %>
+        </td>
     <% else %>
         <td> </td>
         <td> </td>

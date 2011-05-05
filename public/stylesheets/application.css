@@ -20,16 +20,16 @@ a:visited {
     color: green;
 }
 h1 {
-  font-size: 40px;
+  font-size: 20px;
 }
 
 h2 {
-  font-size: 30px;
-  margin: 20px 0;
+  font-size: 16px;
+  margin: 12px 0;
 }
 
 h3 {
-    font-size: 20px;
+    font-size: 14px;
     margin: 10px 0;
 }
 
@@ -78,9 +78,9 @@ ul#social-icons li {
 }
 
 h1.site-title {
-    font-size: 50px;
+    font-size: 24px;
     font-weight: bold;
-    margin: 20px 0 60px 0;
+    margin: 20px 0 20px 0;
 }
 
 div.notice, div.alert{

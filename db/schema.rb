@@ -10,13 +10,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110419122753) do
+ActiveRecord::Schema.define(:version => 20110504231042) do
 
   create_table "badges", :force => true do |t|
     t.string   "name"
     t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "isActive",    :default => true
   end
 
   create_table "relationType", :force => true do |t|
@@ -24,6 +25,7 @@ ActiveRecord::Schema.define(:version => 20110419122753) do
     t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "isActive",    :default => true
   end
 
   create_table "reviews", :force => true do |t|
@@ -37,6 +39,7 @@ ActiveRecord::Schema.define(:version => 20110419122753) do
     t.float    "EspressoScore"
     t.float    "PersonalityScore"
     t.float    "AtmosphereScore"
+    t.boolean  "isActive",         :default => true
   end
 
   create_table "sharings", :force => true do |t|
@@ -44,6 +47,7 @@ ActiveRecord::Schema.define(:version => 20110419122753) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+    t.boolean  "isActive",   :default => true
   end
 
   create_table "shop_checkin", :force => true do |t|
@@ -51,6 +55,7 @@ ActiveRecord::Schema.define(:version => 20110419122753) do
     t.integer  "user_ID"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "isActive",   :default => true
   end
 
   create_table "shops", :force => true do |t|
@@ -65,6 +70,7 @@ ActiveRecord::Schema.define(:version => 20110419122753) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "gmaps"
+    t.boolean  "isActive",    :default => true
   end
 
   create_table "user_badges", :force => true do |t|
@@ -72,6 +78,7 @@ ActiveRecord::Schema.define(:version => 20110419122753) do
     t.integer  "badge_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "isActive",   :default => true
   end
 
   create_table "user_relations", :force => true do |t|
@@ -81,6 +88,7 @@ ActiveRecord::Schema.define(:version => 20110419122753) do
     t.datetime "RelationAcknowledge"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "isActive",            :default => true
   end
 
   create_table "user_tokens", :force => true do |t|
@@ -117,6 +125,7 @@ ActiveRecord::Schema.define(:version => 20110419122753) do
     t.string   "slug"
     t.boolean  "admin",                               :default => false
     t.boolean  "reviewer",                            :default => false
+    t.boolean  "isActive",                            :default => true
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

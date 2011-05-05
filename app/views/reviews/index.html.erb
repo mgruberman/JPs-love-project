@@ -4,11 +4,11 @@
   <tr>
     <th>Shop</th>
     <th>Description</th>
-    <th>Cappuccinoscore</th>
-    <th>Espressoscore</th>
-    <th>Personalityscore</th>
-    <th>Atmospherescore</th>
-    <th>Total Score</th>
+    <th>Cap</th>
+    <th>Esp</th>
+    <th>Pers</th>
+    <th>Atmo</th>
+    <th>Total</th>
     <th>User</th>
     <th></th>
     <th></th>
@@ -28,7 +28,13 @@
     <td><%= link_to 'Show', review %></td>
     <% if !current_user.nil? && (current_user.admin || (current_user.reviewer && current_user.id == review.user_id))%>
         <td><%= link_to 'Edit', edit_review_path(review) %></td>
-        <td><%= link_to 'Destroy', review, :confirm => 'Are you sure?', :method => :delete %> TODO: make this a soft delete</td>
+        <td>
+            <% if !review.isActive %>
+                <%= link_to 'Activate', activate_reviews_path(review.id) %>
+            <% else %>
+                <%= link_to 'Deactivate', review, :confirm => 'Are you sure?', :method => :delete %>
+            <% end %>
+        </td>
     <% else %>
         <td> </td>
         <td> </td>

@@ -1,4 +1,11 @@
-OmniauthDeviseExample::Application.routes.draw do
+OmniauthDeviseExample::Application.routes.draw do |map|
+
+  map.connect "badges/:action", :controller => 'badges', :action => /[a-z]+/i
+  map.connect "shops/:action", :controller => 'shops', :action => /[a-z]+/i
+  map.connect "reviews/:action", :controller => 'reviews', :action => /[a-z]+/i
+  map.connect "reviews/activate/:id", :controller => "reviews", :action => "activate"
+  map.connect "shops/activate/:id", :controller => "shops", :action => "activate"
+
   resources :badges
 
   resources :shops

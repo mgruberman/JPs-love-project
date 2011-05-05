@@ -78,7 +78,17 @@ class ShopsController < ApplicationController
   # DELETE /shops/1.xml
   def destroy
     @shop = Shop.find(params[:id])
-    @shop.destroy
+    @shop.update_attribute(:isActive, false)
+
+    respond_to do |format|
+      format.html { redirect_to(shops_url) }
+      format.xml  { head :ok }
+    end
+  end
+  
+  def activate
+    @shop = Shop.find(params[:id])
+    @shop.update_attribute(:isActive, true)
 
     respond_to do |format|
       format.html { redirect_to(shops_url) }

@@ -5,6 +5,7 @@
       <h2><%= @shop.name %></h2>
       <h3><%= @shop.address %></h3>
       <h3><%= scoreToHundred(shopScore(@reviews))%>/100</h3>
+      active? <%= @shop.isActive %>
     </td>
     <td VALIGN=TOP>
       
@@ -42,5 +43,12 @@
 
 <% if !current_user.nil? && current_user.admin %>
 <%= link_to 'Edit', edit_shop_path(@shop) %> |
+ 
+  <% if !@shop.isActive %>
+     <%= link_to 'Activate', activate_shops_path(@shop.id) %>
+  <% else %>
+     <%= link_to 'Deactivate', @shop, :confirm => 'Are you sure?', :method => :delete %>
+  <% end %>
+
 <% end %>
 <%= link_to 'Back', shops_path %>
