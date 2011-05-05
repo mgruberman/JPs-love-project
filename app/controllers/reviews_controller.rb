@@ -86,6 +86,7 @@ class ReviewsController < ApplicationController
    # end
   #end
   
+  #TODO: lock these down.
   def destroy
     @review = Review.find(params[:id])
     @review.update_attribute(:isActive, false)

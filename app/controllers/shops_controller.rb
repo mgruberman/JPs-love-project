@@ -76,10 +76,13 @@ class ShopsController < ApplicationController
 
   # DELETE /shops/1
   # DELETE /shops/1.xml
+  #TODO: lock these down.
   def destroy
     @shop = Shop.find(params[:id])
     @shop.update_attribute(:isActive, false)
-
+    
+    return render :text => "The params[:id] is #{params[:id]}"
+    
     respond_to do |format|
       format.html { redirect_to(shops_url) }
       format.xml  { head :ok }
