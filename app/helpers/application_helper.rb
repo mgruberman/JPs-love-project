@@ -20,17 +20,19 @@ module ApplicationHelper
     #this takes a Review dataset.
     totalScore = r.AtmosphereScore + r.PersonalityScore
     totalDenom = 2
-    if defined? r.CappuccinoScore
+    if !r.CappuccinoScore.nil?
       #coffee drinks are worth 4x the score
       totalScore = totalScore + (r.CappuccinoScore * 4)
       totalDenom = totalDenom + 4
     end
-    if defined? r.EspressoScore
+    if !r.EspressoScore.nil?
       #coffee drinks are worth 4x the score
       totalScore = totalScore + (r.EspressoScore * 4)
       totalDenom = totalDenom + 4
     end
-    totalScore = totalScore/totalDenom
+    total = totalScore/totalDenom
+    roundScore = ((total*100).round).to_f
+    returnScore = (roundScore/100)
   end
   
   def shopScore(r)
