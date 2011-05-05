@@ -81,7 +81,8 @@ class ShopsController < ApplicationController
     @shop = Shop.find(params[:id])
     @shop.update_attribute(:isActive, false)
     
-    return render :text => "The params[:id] is #{params[:id]}"
+    #return render :text => "The @shop.isActive is #{@shop.isActive}"
+    logger.debug "The ~~~~~~@shop~~~~~ is #{@shop}"
     
     respond_to do |format|
       format.html { redirect_to(shops_url) }
