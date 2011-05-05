@@ -32,8 +32,9 @@
             <% if !review.isActive %>
                 <%= link_to 'Activate', activate_reviews_path(review.id) %>
             <% else %>
-                <%= link_to 'Deactivate', review, :confirm => 'Are you sure?', :method => :delete %>
+                <%= link_to 'Deactivate', review, :method => :delete %>
             <% end %>
+                <%= link_to 'X', demolish_reviews_path(review.id), :confirm => 'Are you sure you want to delete?' %>
         </td>
     <% else %>
         <td> </td>

@@ -42,9 +42,13 @@ module ApplicationHelper
       scores = scores + totalScore(singleR)
       denom = denom + 1
     end
-    total = scores/denom
-    roundScore = ((total*10).round).to_f
-    returnScore = (roundScore/10) 
+    if denom == 0
+        returnScore = 0
+    else
+        total = scores/denom
+        roundScore = ((total*10).round).to_f
+        returnScore = (roundScore/10) 
+    end
   end
   
   def scoreToHundred(n)

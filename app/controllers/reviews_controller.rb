@@ -106,4 +106,16 @@ class ReviewsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  # demolish /reviews/1
+  # demolish /reviews/1.xml
+  def demolish
+    @review = Review.find(params[:id])
+    @review.destroy
+
+    respond_to do |format|
+      format.html { redirect_to(reviews_url) }
+      format.xml  { head :ok }
+    end
+  end
 end

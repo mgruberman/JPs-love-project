@@ -2,9 +2,9 @@ class ShopsController < ApplicationController
   # GET /shops
   # GET /shops.xml
   def index
-    	@shops = Shop.all
+    	@shops = Shop.find(:all, :include => [:reviews])
     	@json = Shop.all.to_gmaps4rails
-
+      
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @shops }
@@ -46,7 +46,7 @@ class ShopsController < ApplicationController
   # POST /shops.xml
   def create
     @shop = Shop.new(params[:shop])
-
+    #return render :text => "The Create action... is #{@shop.isActive}"
     respond_to do |format|
       if @shop.save
         format.html { redirect_to(@shop, :notice => 'Shop was successfully created.') }
@@ -82,7 +82,7 @@ class ShopsController < ApplicationController
     @shop.update_attribute(:isActive, false)
     
     #return render :text => "The @shop.isActive is #{@shop.isActive}"
-    logger.debug "The ~~~~~~@shop~~~~~ is #{@shop}"
+    #logger.debug "The ~~~~~~@shop~~~~~ is #{@shop}"
     
     respond_to do |format|
       format.html { redirect_to(shops_url) }
@@ -93,6 +93,18 @@ class ShopsController < ApplicationController
   def activate
     @shop = Shop.find(params[:id])
     @shop.update_attribute(:isActive, true)
+
+    respond_to do |format|
+      format.html { redirect_to(shops_url) }
+      format.xml  { head :ok }
+    end
+  end
+  
+  # demolish /shops/1
+  # demolish /shops/1.xml
+  def demolish
+    @shop = Shop.find(params[:id])
+    @shop.destroy
 
     respond_to do |format|
       format.html { redirect_to(shops_url) }

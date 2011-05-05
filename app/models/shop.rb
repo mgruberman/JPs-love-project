@@ -1,9 +1,9 @@
 class Shop < ActiveRecord::Base
-acts_as_gmappable
-has_many :reviews
+	has_many :reviews
 
+	acts_as_gmappable
 	def gmaps4rails_address
-		address 
+		self.address 
 	end
 
 end

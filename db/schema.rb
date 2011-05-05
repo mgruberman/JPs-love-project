@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110504231042) do
+ActiveRecord::Schema.define(:version => 20110505181207) do
 
   create_table "badges", :force => true do |t|
     t.string   "name"
@@ -70,7 +70,7 @@ ActiveRecord::Schema.define(:version => 20110504231042) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "gmaps"
-    t.boolean  "isActive",    :default => true
+    t.boolean  "isActive",    :default => false
   end
 
   create_table "user_badges", :force => true do |t|

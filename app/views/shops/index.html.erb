@@ -4,6 +4,7 @@
   <tr>
     <th>Name</th>
     <th>Address</th>
+    <th>Score</th>
     <th></th>
     <th></th>
   </tr>
@@ -12,14 +13,16 @@
   <tr class="<%= cycle("d0","d1")%>">
     <td><%= link_to shop.name, shop %></td>
     <td><%= shop.address %></td>
+    <td><%= scoreToHundred(shopScore(shop.reviews))%></td>
     <% if !current_user.nil? && current_user.admin %>
         <td><%= link_to 'Edit', edit_shop_path(shop) %></td>
         <td>
             <% if !shop.isActive %>
                 <%= link_to 'Activate', activate_shops_path(shop.id) %>
             <% else %>
-                <%= link_to 'Deactivate', shop, :confirm => 'Are you sure?', :method => :delete %>
+                <%= link_to 'Deactivate', shop, :method => :delete %>
             <% end %>
+                <%= link_to 'X', demolish_shops_path(shop.id), :confirm => 'Are you sure?' %>
         </td>
     <% else %>
         <td> </td>
