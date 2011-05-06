@@ -12,6 +12,7 @@ gem "rest-client", "1.6.1", :require => "restclient"
 gem "sluggable"
 gem 'gmaps4rails'
 gem 'exception_notification', :require => 'exception_notifier'
+gem 'yaml_db'
 
 
 group :development, :test do

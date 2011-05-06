@@ -172,6 +172,7 @@ GEM
     tzinfo (0.3.25)
     warden (1.0.3)
       rack (>= 1.0.0)
+    yaml_db (0.2.1)
 
 PLATFORMS
   ruby
@@ -192,3 +193,4 @@ DEPENDENCIES
   sluggable
   sqlite3-ruby
   twitter_oauth (= 0.4.3)
+  yaml_db

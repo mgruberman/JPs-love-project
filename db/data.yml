@@ -1,0 +1,371 @@
+
+---
+users:
+  columns:
+  - id
+  - email
+  - encrypted_password
+  - reset_password_token
+  - remember_token
+  - remember_created_at
+  - sign_in_count
+  - current_sign_in_at
+  - last_sign_in_at
+  - current_sign_in_ip
+  - last_sign_in_ip
+  - confirmation_token
+  - confirmed_at
+  - confirmation_sent_at
+  - created_at
+  - updated_at
+  - name
+  - photo_file_name
+  - photo_content_type
+  - photo_file_size
+  - slug
+  - admin
+  - reviewer
+  - isActive
+  records: 
+---
+  - - 2
+    - thethirddan@gmail.com
+    - $2a$10$TJ7UFBnEt65WDiUfPfBeRuvyu73tImJM8FfxYYbX.KnaXcyUFZrgi
+    - !!null 
+    - ooeAWTorERtM98CW7FLO
+    - '2011-05-04 19:11:36.375876'
+    - 12
+    - '2011-05-05 18:14:07.824832'
+    - '2011-05-05 17:00:35.393455'
+    - 127.0.0.1
+    - 127.0.0.1
+    - !!null 
+    - !!null 
+    - !!null 
+    - '2011-04-18 07:48:03.976438'
+    - '2011-05-05 18:14:07.825832'
+    - Dan baumfeld
+    - !!null 
+    - !!null 
+    - !!null 
+    - dan-baumfeld
+    - true
+    - true
+    - true
+  - - 3
+    - dan@dan.org
+    - $2a$10$W8S6FW4aQMMgre7w2CzJhuVfrzP8.dOyY9VfYSpaXf1uYAs9fE8gC
+    - !!null 
+    - !!null 
+    - !!null 
+    - 1
+    - '2011-04-20 03:18:26.535982'
+    - '2011-04-20 03:18:26.535982'
+    - 127.0.0.1
+    - 127.0.0.1
+    - !!null 
+    - !!null 
+    - !!null 
+    - '2011-04-20 03:18:26.408975'
+    - '2011-04-20 03:18:33.847400'
+    - dan boffo
+    - !!null 
+    - !!null 
+    - !!null 
+    - dan-boffo
+    - false
+    - true
+    - true
+
+---
+reviews:
+  columns:
+  - id
+  - shop_id
+  - user_id
+  - description
+  - score
+  - created_at
+  - updated_at
+  - CappuccinoScore
+  - EspressoScore
+  - PersonalityScore
+  - AtmosphereScore
+  - isActive
+  records: 
+---
+  - - 2
+    - 2
+    - 2
+    - Neptune is still great
+    - !!null 
+    - '2011-04-19 12:34:45.759411'
+    - '2011-05-05 16:54:17.850861'
+    - 5.5
+    - 4.0
+    - 5.5
+    - 4.5
+    - false
+  - - 6
+    - 2
+    - 2
+    - Neptune is such an amazing shop, yo. They have penguins and muffins and everything
+      you'd want.
+    - !!null 
+    - '2011-04-19 23:27:50.245440'
+    - '2011-05-05 16:54:23.702196'
+    - 4.5
+    - 5.0
+    - 5.5
+    - 6.0
+    - true
+  - - 7
+    - 3
+    - 2
+    - Vivace is so great! I'd like to eat it all up, yum!
+    - !!null 
+    - '2011-04-19 23:28:32.931882'
+    - '2011-04-19 23:28:32.931882'
+    - 4.0
+    - 4.0
+    - 3.5
+    - 3.0
+    - true
+  - - 8
+    - 5
+    - 2
+    - Laila works not here. But she might sometimes?
+    - !!null 
+    - '2011-04-20 02:47:08.363557'
+    - '2011-04-20 02:47:08.363557'
+    - 4.5
+    - 4.5
+    - 5.0
+    - 4.5
+    - true
+  - - 9
+    - 4
+    - 3
+    - Brix is spelled wrong
+    - !!null 
+    - '2011-04-20 03:19:45.958525'
+    - '2011-04-20 03:19:45.958525'
+    - 4.0
+    - 6.0
+    - 2.0
+    - 3.0
+    - true
+  - - 10
+    - 2
+    - 3
+    - error!
+    - !!null 
+    - '2011-04-20 03:22:38.611400'
+    - '2011-04-20 03:22:38.611400'
+    - 4.0
+    - 3.0
+    - 2.0
+    - 1.0
+    - true
+  - - 11
+    - 10
+    - 2
+    - This is a very good shop in Phinney
+    - !!null 
+    - '2011-05-05 19:28:51.945309'
+    - '2011-05-05 19:28:51.945309'
+    - 4.0
+    - !!null 
+    - 2.0
+    - 5.0
+    - true
+  - - 12
+    - 11
+    - 2
+    - Kara is amazing. Go here.
+    - !!null 
+    - '2011-05-05 20:08:00.034612'
+    - '2011-05-05 20:08:00.034612'
+    - 4.0
+    - 4.0
+    - 4.0
+    - 4.0
+    - true
+  - - 13
+    - 11
+    - 2
+    - There are hippies everywhere. booo
+    - !!null 
+    - '2011-05-05 21:45:57.156764'
+    - '2011-05-05 21:45:57.156764'
+    - 5.0
+    - !!null 
+    - 2.0
+    - 3.0
+    - true
+
+---
+shops:
+  columns:
+  - id
+  - name
+  - address
+  - city
+  - state
+  - zipcode
+  - latitude
+  - longitude
+  - description
+  - created_at
+  - updated_at
+  - gmaps
+  - isActive
+  records: 
+---
+  - - 2
+    - Neptune Coffee
+    - 8415 Greenwood ave N, Seattle WA
+    - !!null 
+    - !!null 
+    - !!null 
+    - 47.6903028
+    - -122.3554809
+    - !!null 
+    - '2011-04-18 08:38:49.586637'
+    - '2011-05-05 19:06:21.417063'
+    - true
+    - true
+  - - 3
+    - Vivace (alley 24)
+    - 227 Yale Avenue North, Seattle
+    - !!null 
+    - !!null 
+    - !!null 
+    - 47.620165
+    - -122.3305
+    - !!null 
+    - '2011-04-18 08:39:29.582925'
+    - '2011-05-05 19:06:25.544299'
+    - true
+    - true
+  - - 4
+    - Vivace (Brix)
+    - 321 Broadway East, Seattle
+    - !!null 
+    - !!null 
+    - !!null 
+    - 47.621675
+    - -122.321075
+    - !!null 
+    - '2011-04-18 08:40:00.478692'
+    - '2011-05-05 19:06:27.799428'
+    - true
+    - true
+  - - 5
+    - Stumptown (12th)
+    - 1115 12th Avenue, Seattle WA
+    - !!null 
+    - !!null 
+    - !!null 
+    - 47.6120568
+    - -122.3168561
+    - !!null 
+    - '2011-04-20 02:46:18.790721'
+    - '2011-04-20 02:46:18.790721'
+    - true
+    - true
+  - - 10
+    - Herkimer Coffee
+    - 7320 Greenwood Ave N. Seattle, Wa
+    - !!null 
+    - !!null 
+    - !!null 
+    - 47.682191
+    - -122.35508
+    - !!null 
+    - '2011-05-05 18:59:43.366296'
+    - '2011-05-05 18:59:43.366296'
+    - true
+    - false
+  - - 11
+    - Herkimer Coffee Univ
+    - 5611 University Way NE, Seattle WA
+    - !!null 
+    - !!null 
+    - !!null 
+    - 47.669818
+    - -122.313186
+    - !!null 
+    - '2011-05-05 19:00:20.904443'
+    - '2011-05-05 19:00:32.539109'
+    - true
+    - false
+  - - 12
+    - Victrola Coffee
+    - 411 15th Avenue East, Seattle
+    - !!null 
+    - !!null 
+    - !!null 
+    - 47.622682
+    - -122.312658
+    - !!null 
+    - '2011-05-05 19:02:24.274500'
+    - '2011-05-05 20:10:00.071478'
+    - true
+    - false
+
+---
+user_locations:
+  columns:
+  - id
+  - user_id
+  - name
+  - address
+  - longitude
+  - latitude
+  - gmaps
+  - created_at
+  - updated_at
+  - isDefaultLocation
+  records: 
+---
+  - - 1
+    - 2
+    - wedgwood
+    - 7721 35th ave NE
+    - -122.290917
+    - 47.6855959
+    - true
+    - '2011-05-05 21:00:15.388944'
+    - '2011-05-06 09:51:41.650233'
+    - true
+  - - 2
+    - 2
+    - Wallingford House
+    - 114 51st ave NE, Seattle WA
+    - -122.327479
+    - 47.665949
+    - true
+    - '2011-05-05 21:03:47.681087'
+    - '2011-05-06 00:12:33.398881'
+    - false
+  - - 3
+    - 2
+    - Neptune Coffee
+    - 8415 greenwood ave N, Seattle WA
+    - -122.3554809
+    - 47.6903028
+    - true
+    - '2011-05-05 21:04:25.468248'
+    - '2011-05-06 00:28:15.625773'
+    - false
+  - - 4
+    - 2
+    - poop
+    - 1123 fake st, seattle WA
+    - -122.3320708
+    - 47.6062095
+    - true
+    - '2011-05-05 21:13:37.509823'
+    - '2011-05-05 23:05:38.153222'
+    - false
