@@ -2,7 +2,7 @@ source 'http://rubygems.org'
 
 gem 'rake'
 gem 'rails', '3.0.5'
-gem 'sqlite3-ruby', :require => 'sqlite3'
+#gem 'sqlite3-ruby', :require => 'sqlite3'
 gem 'devise', :git => 'git://github.com/plataformatec/devise', :branch => 'master'
 gem 'omniauth', '0.2.0'
 gem 'paperclip'
@@ -13,6 +13,7 @@ gem "sluggable"
 gem 'gmaps4rails'
 gem 'exception_notification', :require => 'exception_notifier'
 gem 'yaml_db'
+gem 'mysql'
 
 
 group :development, :test do
