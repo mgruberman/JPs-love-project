@@ -1,0 +1,27 @@
+<% #thanks to enable_css, user can avoid this css to be loaded
+   if enable_css == true %>
+	<% content_for :head do %>
+	<%= stylesheet_link_tag 'gmaps4rails' %>
+	<% end %>
+<% end %>
+
+<% content_for :scripts do %>
+<% if enable_js == true %>
+	<script src="http://www.google.com/jsapi"></script>
+	<%=javascript_include_tag 'gmaps4rails' %>
+	<% unless options["markers"].nil? or (!options["markers"]["options"].nil? and options["markers"]["options"]["do_clustering"] == false) %>
+		<script type="text/javascript" src='http://google-maps-utility-library-v3.googlecode.com/svn/tags/markerclusterer/1.0/src/markerclusterer_compiled.js'></script>
+	<% end %>
+<% end  %>
+<script type="text/javascript" charset="utf-8">
+
+window.onload = function() {
+<% #true is passed here to trigger map initialization %>
+<%=raw options.to_gmaps4rails(true) %>
+}
+</script>
+<% end %>
+
+<div id="<%= options["map_options"].nil? || options['map_options']['container_id'].nil? ? "map_container" : options['map_options']['container_id'] %>"> 
+  <div id="<%= options["map_options"].nil? || options['map_options']['id'].nil? ? "gmaps4rails_map" : options['map_options']['id'] %>"></div>
+</div>

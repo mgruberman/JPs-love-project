@@ -4,6 +4,7 @@ class ShopsController < ApplicationController
   def index
     	@shops = Shop.find(:all, :include => [:reviews])
     	@json = Shop.all.to_gmaps4rails
+      @user_location = UserLocation.where(:user_id => current_user.id, :isDefaultLocation => true)
       
     respond_to do |format|
       format.html # index.html.erb

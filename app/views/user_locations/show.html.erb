@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>User:</b>
+  <%= @user_location.user_id %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%= @user_location.name %>
+</p>
+
+<p>
+  <b>Address:</b>
+  <%= @user_location.address %>
+</p>
+
+<p>
+  <b>Longitude:</b>
+  <%= @user_location.longitude %>
+</p>
+
+<p>
+  <b>Latitude:</b>
+  <%= @user_location.latitude %>
+</p>
+
+<p>
+  <b>Gmaps:</b>
+  <%= @user_location.gmaps %>
+</p>
+
+
+<%= link_to 'Edit', edit_user_location_path(@user_location) %> |
+<%= link_to 'Back', user_locations_path %>

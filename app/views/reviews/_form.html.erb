@@ -15,8 +15,7 @@
     <%= f.label :shop_id %><br />
     
     <%= collection_select("review", "shop_id", @shopList, "id", "name", {:prompt => true}) %>
-    -- TODO: prepopulate this if the ID is passed in.
-    -- TODO: this breaks if you comeback to this page with an error.
+    <!-- TODO: prepopulate this if the ID is passed in. -->
   </div>
   
   <div class="field">
@@ -39,9 +38,6 @@
     <%= f.label :AtmosphereScore %><br />
     <%= f.text_field :AtmosphereScore %>
   </div>
-
-  <%= f.hidden_field :user_id, { :value => current_user.id } %>
-    
   <div class="actions">
     <%= f.submit %>
   </div>

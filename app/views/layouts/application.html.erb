@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <%= yield :head %>
   <title>Coffee Compass</title>
   <%= stylesheet_link_tag 'scaffold' %>
   <%= stylesheet_link_tag 'application' %>
@@ -14,7 +15,7 @@
   <meta property="description" content="<%= @page_description || DEFAULT_PAGE_DESCRIPTION %>"/>
   
   <%= content_for :page_specific_head %>
-  <%= yield :head %>
+  
 
 </head>
 <body>
@@ -26,14 +27,13 @@
     <%= link_to 'Shop', '/shops' %> |
     <%= link_to 'Reviews', '/reviews' %> |
     <% if user_signed_in? %>
-    	
     	<% if current_user.admin %>
     		<%= link_to 'Admin', '#' %> |
     	<% end %>
-    		
         <%= link_to 'Sharing', sharings_path %> |
         <%= link_to 'Profile', profile_path(current_user) %> |
         <%= link_to 'Edit Profile', edit_user_registration_path(current_user) %> |
+        <%= link_to 'My Locations', '/user_locations' %> |
         <%= link_to "Sign out", destroy_user_session_path %>
     <% else %>
         <%= link_to "Sign up", new_user_registration_path %> |
@@ -60,5 +60,14 @@
 </script>
 
 <script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script>
+<!--
+TODO:
+  ADD Calibration FAQ
+  Lock down admin and reviewer Controler:actions
+    is there and easy way for this?
+      an application function?
+  ADD brewed coffee field.
+  
+-->
 </body>
 </html>

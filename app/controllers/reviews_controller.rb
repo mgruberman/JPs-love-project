@@ -43,7 +43,7 @@ class ReviewsController < ApplicationController
   # POST /reviews
   # POST /reviews.xml
   def create
-    
+    params[:review][:user_id] = current_user.id
     @review = Review.new(params[:review])
 
     respond_to do |format|

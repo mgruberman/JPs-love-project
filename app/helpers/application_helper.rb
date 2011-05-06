@@ -60,4 +60,24 @@ module ApplicationHelper
     roundScore = ((scoreHundred*10).round).to_f
     returnScore = (roundScore/10) 
   end
+  
+
+  def isNumeric(s)
+    begin
+        Float(s)
+    rescue
+        false # not numeric
+    else
+        true # numeric
+    end
+  end
+  
+  def calcDistance(x1, y1, x2, y2) 
+    #this will calculate the distance between two sets of latitude and longitude
+    dist = Math.sqrt( ((x1-x2)**2) + ((y1-y2)**2))
+    distMiles = dist * 69.078 
+    roundScore = ((distMiles*100).round).to_f
+    returnScore = (roundScore/100)
+  end
+  
 end

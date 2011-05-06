@@ -1,0 +1,36 @@
+<h1>My Locations</h1>
+
+<table>
+  <tr>
+    <th>User</th>
+    <th>Name</th>
+    <th>Address</th>
+    <th>Longitude</th>
+    <th>Latitude</th>
+    <th>isDefault</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @user_locations.each do |user_location| %>
+  <tr>
+    <td><%= user_location.user_id %></td>
+    <td><%= user_location.name %></td>
+    <td><%= user_location.address %></td>
+    <td><%= user_location.longitude %></td>
+    <td><%= user_location.latitude %></td>
+    <td>
+        <%= user_location.isDefaultLocation %>
+        <%= link_to 'set', set_default_user_location_path(user_location.id) %>
+    </td>
+    <td><%= link_to 'Show', user_location %></td>
+    <td><%= link_to 'Edit', edit_user_location_path(user_location) %></td>
+    <td><%= link_to 'Destroy', user_location, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+<%= link_to 'New User location', new_user_location_path %>
+<br>
+<%= gmaps4rails(@json) %>
+
+

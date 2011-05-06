@@ -1,19 +1,45 @@
-<h1>Listing shops</h1>
+<% @user_location.each do |l| %>
+    <% $userlong = l.longitude %>
+    <% $userlat = l.latitude %>
+    <% $userLocAddress = l.address %>
+    <% $userLocName = l.name %>
+<% end %>
 
+<h1>shops</h1>
+<% if !current_user.nil? && (current_user.admin || current_user.reviewer ) %>
+    <table>
+        <tr>
+            <th align=left>&nbsp;&nbsp;&nbsp;&nbsp;My Location <%= link_to '(change)', '/user_locations' %>
+            </th>
+        </tr>
+        <tr>
+            <td align=left><%= $userLocName %>: <%= $userLocAddress %>
+            </td>
+        </tr>
+    </table>
+<% end %>
 <table>
   <tr>
     <th>Name</th>
     <th>Address</th>
     <th>Score</th>
+    <th>Distance:</th>
     <th></th>
     <th></th>
   </tr>
+
+
 
 <% @shops.each do |shop| %>
   <tr class="<%= cycle("d0","d1")%>">
     <td><%= link_to shop.name, shop %></td>
     <td><%= shop.address %></td>
     <td><%= scoreToHundred(shopScore(shop.reviews))%></td>
+    <% if isNumeric($userlong) && isNumeric($userlat) %>
+        <td><%= calcDistance($userlong, $userlat, shop.longitude, shop.latitude) %> mi</td>
+    <% else %>
+        <td></td>
+    <% end %>
     <% if !current_user.nil? && current_user.admin %>
         <td><%= link_to 'Edit', edit_shop_path(shop) %></td>
         <td>
@@ -33,8 +59,12 @@
 <% end %>
 </table>
 
+<% if !current_user.nil? && (current_user.admin || current_user.reviewer ) %>
+    <%= link_to ' New Shop', new_shop_path %>
+<% end %>
+
 <br />
 
-<%= link_to 'New Shop', new_shop_path %>
 <%= gmaps4rails(@json) %>
+
 

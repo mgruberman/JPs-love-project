@@ -48,7 +48,7 @@
   <% else %>
      <%= link_to 'Deactivate', @shop, :method => :delete %>
   <% end %>
-     | <%= link_to 'X', demolish_shops_path(@shop.id), :confirm => 'Are you sure?' %>
+  | <%= link_to 'X', demolish_shops_path(@shop.id), :confirm => 'Are you sure?' %> 
+  | <%= link_to 'New Review', new_review_path %> 
 <% end %>
-| <%= link_to 'Shops', shops_path %>
-|
+
