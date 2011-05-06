@@ -40,10 +40,13 @@ module ApplicationHelper
     #TODO: we may need a fancier system in the future that has more weight on newer reviews?
     scores = 0
     denom = 0
-    for singleR in r
-      scores = scores + totalScore(singleR)
-      denom = denom + 1
+    if !r.nil?
+        for singleR in r
+        scores = scores + totalScore(singleR)
+        denom = denom + 1
+        end
     end
+    
     if denom == 0
         returnScore = 0
     else

@@ -1,0 +1,8 @@
+Select 
+	s.*,
+	(acos(sin(DEG2RAD(lat1)) * sin(DEG2RAD(lat2)) + cos(DEG2RAD(lat1)) * cos(DEG2RAD(lat2)) * cos(DEG2RAD(lon2) - DEG2RAD(lon1))) * 6378.1) AS distToMyLocation
+from 
+	shops s,
+	user_locations ul
+where ul.user_id = 2
+
