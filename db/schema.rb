@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110505223804) do
+ActiveRecord::Schema.define(:version => 20110509172014) do
 
   create_table "badges", :force => true do |t|
     t.string   "name"
@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(:version => 20110505223804) do
     t.boolean  "isActive",    :default => true
   end
 
-  create_table "relationType", :force => true do |t|
+  create_table "relationtype", :force => true do |t|
     t.string   "name"
     t.string   "description"
     t.datetime "created_at"
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(:version => 20110505223804) do
     t.float    "PersonalityScore"
     t.float    "AtmosphereScore"
     t.boolean  "isActive",         :default => true
+    t.float    "DripScore"
   end
 
   create_table "sharings", :force => true do |t|

@@ -2,9 +2,31 @@ class ShopsController < ApplicationController
   # GET /shops
   # GET /shops.xml
   def index
-    	@shops = Shop.find(:all, :include => [:reviews])
+    	
     	@json = Shop.all.to_gmaps4rails
-      @user_location = UserLocation.where(:user_id => current_user.id, :isDefaultLocation => true)
+      if !current_user.nil?
+        @shops = Shop.connection.select_all("
+          SELECT 
+            s.*,
+            u.name AS locationName,
+            u.address AS locationAddress,
+            getDistance(u.latitude,u.longitude,s.latitude,s.longitude)  * 69.078  AS distanceToMyLocation,
+            getShopReviewScore(s.id) AS shopScore
+          FROM
+            shops s,
+            user_locations u
+          WHERE 
+            u.isDefaultLocation = 1 AND
+            u.user_id = #{current_user.id}
+          ORDER BY distanceToMyLocation
+          ")
+      else
+        @shops = Shop.find(
+              :all, 
+              :include => [:reviews],
+              :select => "'' AS distanceToMyLocation")
+      end
+      
       
     respond_to do |format|
       format.html # index.html.erb
@@ -15,9 +37,45 @@ class ShopsController < ApplicationController
   # GET /shops/1
   # GET /shops/1.xml
   def show
-    @shop = Shop.find(params[:id])
-    shop_id = params[:id]
-    @reviews = Review.find(:all, :conditions => {:shop_id => @shop.id})
+    if !current_user.nil?
+        @shop = Shop.connection.select_all("
+          SELECT 
+            s.*,
+            u.name AS locationName,
+            u.address AS locationAddress,
+            getDistance(u.latitude,u.longitude,s.latitude,s.longitude)  * 69.078  AS distanceToMyLocation,
+            getShopReviewScore(s.id) AS shopScore
+          FROM
+            shops s,
+            user_locations u
+          WHERE 
+            u.isDefaultLocation = 1 AND
+            u.user_id = #{current_user.id} AND
+            s.id = #{params[:id]}
+          ")
+      else
+        @shop = Shop.connection.select_all("
+          SELECT 
+            s.*,
+            NULL AS locationName,
+            NULL AS locationAddress,
+            NULL  AS distanceToMyLocation,
+            getShopReviewScore(s.id) AS shopScore
+          FROM
+            shops s
+          WHERE 
+            s.id = #{params[:id]}
+          ")
+      end
+      
+    #shop_id = params[:id]
+    @reviews = Review.connection.select_all("
+      SELECT 
+        r.*,
+        getReviewScore(r.id) as reviewScore
+      FROM reviews r
+      WHERE r.shop_ID = #{params[:id]}
+    ")
     
     @json = Shop.find(params[:id]).to_gmaps4rails
 

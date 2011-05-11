@@ -6,10 +6,10 @@ class AddScoresToReviewTable < ActiveRecord::Migration
   	add_column :reviews, :AtmosphereScore, :float
   	
   end
-	remove_column :reviews, :CappuccinoScore
-	remove_column :reviews, :EspressoScore
-	remove_column :reviews, :PersonalityScore
-  	remove_column :reviews, :AtmosphereScore
   def self.down
+    remove_column :reviews, :CappuccinoScore
+    remove_column :reviews, :EspressoScore
+    remove_column :reviews, :PersonalityScore
+    remove_column :reviews, :AtmosphereScore
   end
 end

@@ -7,11 +7,8 @@ class AddShopsTable < ActiveRecord::Migration
       s.column :state, :string
       s.column :zipcode, :string
       s.column :latitude, :integer
-      s.column :longitude, :intiger
+      s.column :longitude, :integer
       s.column :description, :string
-      
-      
-      
       s.timestamps
     end
   end

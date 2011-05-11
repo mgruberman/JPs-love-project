@@ -83,4 +83,15 @@ module ApplicationHelper
     returnScore = (roundScore/100)
   end
   
+  def decimalPlaces (x, d)
+    #this will truncate x to the 10^d decimal place.
+    if isNumeric(x) && isNumeric(d)
+        big = 10**d
+        total = x.to_f * big
+        roundScore = (total.round).to_f
+        returnScore = (roundScore/big)
+    else
+        x
+    end
+  end
 end

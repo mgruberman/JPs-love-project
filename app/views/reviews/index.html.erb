@@ -6,10 +6,11 @@
     <th>Description</th>
     <th>Cap</th>
     <th>Esp</th>
+    <th>Drip</th>
     <th>Pers</th>
     <th>Atmo</th>
     <th>Total</th>
-    <th>User</th>
+
     <th></th>
     <th></th>
     <th></th>
@@ -17,24 +18,26 @@
 
 <% @reviews.each do |review| %>
   <tr class="<%= cycle("d1","d0")%>">
-    <td><%= link_to review.shop.name, :controller => "shops", :action => "show", :id => review.shop.id %></td>
-    <td><%= review.description %></td>
-    <td><%= review.CappuccinoScore %></td>
-    <td><%= review.EspressoScore %></td>
-    <td><%= review.PersonalityScore %></td>
-    <td><%= review.AtmosphereScore %></td>
-    <td><%= totalScore(review) %> (<%= scoreToHundred(totalScore(review))%>)</td>
-    <td><%= link_to review.user.name, profile_path(review.user) %></td>
+    <td><%= link_to review['shopName'], :controller => "shops", :action => "show", :id => review['shop_id'] %></td>
+    <td><%= review['description']  %></td>
+    <td><%= review['CappuccinoScore']  %></td>
+    <td><%= review['EspressoScore']  %></td>
+    <td><%= review['DripScore']  %></td>
+    <td><%= review['PersonalityScore']  %></td>
+    <td><%= review['AtmosphereScore']  %></td>
+    <td><%= 
+    decimalPlaces(review['reviewScore'],2) 
+    %></td>
     <td><%= link_to 'Show', review %></td>
     <% if !current_user.nil? && (current_user.admin || (current_user.reviewer && current_user.id == review.user_id))%>
-        <td><%= link_to 'Edit', edit_review_path(review) %></td>
+        <td><%= link_to 'Edit', edit_review_path(review['id']) %></td>
         <td>
-            <% if !review.isActive %>
-                <%= link_to 'Activate', activate_reviews_path(review.id) %>
+            <% if !review['isActive'] %>
+                <%= link_to 'Activate', activate_reviews_path(review['id']) %>
             <% else %>
                 <%= link_to 'Deactivate', review, :method => :delete %>
             <% end %>
-                <%= link_to 'X', demolish_reviews_path(review.id), :confirm => 'Are you sure you want to delete?' %>
+                <%= link_to 'X', demolish_reviews_path(review['id']), :confirm => 'Are you sure you want to delete?' %>
         </td>
     <% else %>
         <td> </td>

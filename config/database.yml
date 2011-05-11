@@ -1,33 +1,33 @@
 development:
-adapter: mysql
-encoding: utf8
-reconnect: false
-port: 3306
-database: coffeecompass
-pool: 5
-username: coffeecompass
-password: c00mp4SS
-host: coffeecompass.db.5850247.hostedresource.com
+ adapter: mysql
+ encoding: utf8
+ reconnect: false
+ port: 3306
+ database: dev
+ pool: 5
+ username: root
+ password: 2504
+ host: localhost
 
 test:
-adapter: mysql
-encoding: utf8
-reconnect: false
-port: 3306
-database: coffeecompass_test
-pool: 5
-username: coffeecompass
-password: c00mp4SS
-host: coffeecompass.db.5850247.hostedresource.com
+ adapter: mysql
+ encoding: utf8
+ reconnect: false
+ port: 3306
+ database: test
+ pool: 5
+ username: root
+ password: 2504
+ host: localhost
 
 
 production:
-adapter: mysql
-encoding: utf8
-reconnect: false
-port: 3306
-database: coffeecompass
-pool: 5
-username: coffeecompass
-password: c00mp4SS
-host: coffeecompass.db.5850247.hostedresource.com
+ adapter: mysql
+ encoding: utf8
+ reconnect: false
+ port: 3306
+ database: coffeetown
+ pool: 5
+ username: coffeetown
+ password: P1ngP2ng
+ host: coffeetown.db.5850247.hostedresource.com

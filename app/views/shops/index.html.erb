@@ -1,68 +1,24 @@
-<% @user_location.each do |l| %>
-    <% $userlong = l.longitude %>
-    <% $userlat = l.latitude %>
-    <% $userLocAddress = l.address %>
-    <% $userLocName = l.name %>
-<% end %>
-
 <h1>shops</h1>
-<% if !current_user.nil? && (current_user.admin || current_user.reviewer ) %>
+<% if !current_user.nil? %>
     <table>
         <tr>
             <th align=left>&nbsp;&nbsp;&nbsp;&nbsp;My Location <%= link_to '(change)', '/user_locations' %>
             </th>
         </tr>
         <tr>
-            <td align=left><%= $userLocName %>: <%= $userLocAddress %>
+            <td align=left>
+            <% 
+                @shops.each do |shop| 
+            %>
+            <%= shop['locationName'] %>: <%= shop['locationAddress'] %>
+            <% 
+                break
+                end
+            %>
             </td>
         </tr>
     </table>
 <% end %>
-
-
-<% 
-
-    
-    #0.upto(@shops.count) do |i|
-     #   $shops[i] = Hash.new
-      #  $shops[i][:value] = i
-    #end
-    
-    $shops = Array.new(@shops.count, 0)
-    $cur_row = 0
-    
-    @shops.each do |s|
-        #puts $cur_row
-        $shops[$cur_row] = Hash.new
-        $shops[$cur_row]['id'] = s.id
-        $shops[$cur_row]['name'] = s.name
-        $shops[$cur_row]['address'] = s.address
-        $shops[$cur_row]['city'] = s.city
-        $shops[$cur_row]['state'] = s.state
-        $shops[$cur_row]['zipcode'] = s.zipcode
-        $shops[$cur_row]['latitude'] = s.latitude
-        $shops[$cur_row]['longitude'] = s.longitude
-        $shops[$cur_row]['description'] = s.description
-        $shops[$cur_row]['created_at'] = s.created_at
-        $shops[$cur_row]['updated_at'] = s.updated_at
-        $shops[$cur_row]['gmaps'] = s.gmaps
-        $shops[$cur_row]['isActive'] = s.isActive
-        if isNumeric($userlong) && isNumeric($userlat)
-            #calculate distance to custom location so we can sort on it.
-            #TODO: do this in the DB 
-            $shops[$cur_row]['distanceToMyLocation'] = calcDistance($userlong, $userlat, s.longitude, s.latitude)
-        else
-            $shops[$cur_row]['distanceToMyLocation'] = ''
-        end
-        $cur_row = $cur_row + 1
-    end
-    
-    #now sort the results 
-    $shops = $shops.sort_by {|s| s['distanceToMyLocation'] }
-    
-    
-%>
-
 <table>
   <tr>
     <th>Name</th>
@@ -74,25 +30,21 @@
   </tr>
 
 <% 
-$shops.each do |shop| 
+@shops.each do |shop| 
 %>
 
   <tr class="<%= cycle("d0","d1")%>">
-    <td><%= link_to shop['name'], shop %></td>
+    <td><%= link_to shop['name'], "shops/#{shop['id']}" %></td>
     <td><%= shop['address'] %></td>
-    <td><%= scoreToHundred(shopScore(shop['reviews']))%></td>
-    <% if isNumeric($userlong) && isNumeric($userlat) %>
-        <td><%= shop['distanceToMyLocation'] %> mi</td>
-    <% else %>
-        <td></td>
-    <% end %>
+    <td><%= shop['shopScore'] %></td>
+    <td><%= shop['distanceToMyLocation'] %> mi</td>
     <% if !current_user.nil? && current_user.admin %>
         <td><%= link_to 'Edit', edit_shop_path(shop) %></td>
         <td>
             <% if !shop['isActive'] %>
                 <%= link_to 'Activate', activate_shops_path(shop['id']) %>
             <% else %>
-                <%= link_to 'Deactivate', shop, :method => :delete %>
+                <%= link_to 'Deactivate', shop['id'], :method => :delete %>
             <% end %>
                 <%= link_to 'X', demolish_shops_path(shop['id']), :confirm => 'Are you sure?' %>
         </td>

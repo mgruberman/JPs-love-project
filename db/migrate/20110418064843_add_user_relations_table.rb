@@ -4,7 +4,7 @@ class AddUserRelationsTable < ActiveRecord::Migration
 	u.column :RelatingUserID, :string
 	u.column :RelatedUserID, :integer
 	u.column :RelationTypeID, :integer
-	u.column :RelationAcknowledge, :datetime, :default => :null
+	u.column :RelationAcknowledge, :datetime
     	  
 	u.timestamps
     end

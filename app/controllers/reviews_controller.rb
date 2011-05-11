@@ -2,7 +2,14 @@ class ReviewsController < ApplicationController
   # GET /reviews
   # GET /reviews.xml
   def index
-    @reviews = Review.find( :all, :include => [:user, :shop])
+    @reviews = Review.connection.select_all("
+      SELECT 
+        r.*,
+        s.name as shopName,
+        getReviewScore(r.id) as reviewScore
+      FROM reviews r
+      JOIN shops s on r.shop_id = s.id
+    ")
 
     respond_to do |format|
       format.html # index.html.erb
