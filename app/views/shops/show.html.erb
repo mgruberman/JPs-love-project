@@ -7,7 +7,7 @@
     <td VALIGN=TOP>
       <h2><%= shop['name'] %></h2>
       <h3><%= shop['address'] %></h3>
-      <h3><%= shop['shopScore'] %></h3>
+      <h3><%= decimalPlaces(shop['shopScore'],2) %></h3>
     </td>
     <td VALIGN=TOP>
       
@@ -25,7 +25,7 @@
   -- Drip Score: <%= r['DripScore'] %>
   --  Atmosphere Score: <%= r['AtmosphereScore'] %> 
   -- Personality Score: <%= r['PersonalityScore'] %> 
-  -- Total Score: <%= r['reviewScore'] %><br>
+  -- Total Score: <%= decimalPlaces(r['reviewScore'],2) %><br>
   <%= truncate(r['description'], :length => 200, :omission => '...') %> 
   <%= link_to "(show review)", :controller => "reviews", :action => "show", :id => r['id'] %>
       </td>

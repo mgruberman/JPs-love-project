@@ -1,56 +1,54 @@
 <p id="notice"><%= notice %></p>
-
+<% @review.each do |review| %>
 <p>
   <b>Shop:</b>
-  <%= link_to @review.shop.name, :controller => "shops", :action => "show", :id => @review.shop.id %>
+   <%= link_to review['shopName'], :controller => "shops", :action => "show", :id => review['shop_id'] %>
 </p>
 
 <p>
   <b>Description:</b>
-  <%= @review.description %>
+  <%= review['description'] %>
 </p>
 
 <p>
   <b>Cappuccino score:</b>
-  <%= @review.CappuccinoScore %>
+  <%= review['CappuccinoScore'] %>
 </p>
 
 <p>
   <b>Espresso score:</b>
-  <%= @review.EspressoScore %>
+  <%= review['EspressoScore'] %>
 </p>
 <p>
   <b>Drip score:</b>
-  <%= @review.DripScore %>
+  <%= review['DripScore'] %>
 </p>
 <p>
   <b>Personality score:</b>
-  <%= @review.PersonalityScore %>
+  <%= review['PersonalityScore'] %>
 </p>
 
 <p>
   <b>Atmosphere score:</b>
-  <%= @review.AtmosphereScore %>
+  <%= review['AtmosphereScore'] %>
 </p>
 
 <p>
   <b>Total Score:</b>
-  <%= totalScore(@review) %> (<%= scoreToHundred(totalScore(@review))%>)
+  <%= decimalPlaces(review['reviewScore'],2) %>
 </p>
 
-<p>
-  <b>User:</b>
-  <%= link_to @review.user.name, profile_path(@review.user) %>
-</p>
+
 
 <br>
-<% if !current_user.nil? && (current_user.admin || (current_user.reviewer && current_user.id == @review.user_id))%>
-  <%= link_to 'Edit', edit_review_path(@review) %> | 
-  <% if !@review.isActive %>
-     <%= link_to 'Activate', activate_reviews_path(@review.id) %>
+<% if !current_user.nil? && (current_user.admin || (current_user.reviewer && current_user.id == review['user_id']))%>
+  <%= link_to 'Edit', edit_review_path(review['id']) %> | 
+  <% if !review['isActive'] %>
+     <%= link_to 'Activate', activate_reviews_path(review['id']) %>
   <% else %>
-     <%= link_to 'Deactivate', @review, :method => :delete %>
+     <%= link_to 'Deactivate', review['id'], :method => :delete %>
   <% end %>
-     <%= link_to 'X', demolish_reviews_path(@review.id), :confirm => 'Are you sure you want to delete?' %>
+     <%= link_to 'X', demolish_reviews_path(review['id']), :confirm => 'Are you sure you want to delete?' %>
 <% end %>
 <%= link_to 'Back', reviews_path %>
+<% end %>

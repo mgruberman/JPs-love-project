@@ -51,9 +51,11 @@
 
 <div class="footer">
   <%= yield :scripts %>
+  <!--
   --SESSION-- <%= debug session %> 
   --PARAMS-- <%= debug params %>
   --current_user-- <%= debug current_user %>
+  -->
 </div>
 
 <script type="text/javascript" src="http://platform.twitter.com/widgets.js">
@@ -63,12 +65,23 @@
 <!--
 TODO:
   ADD Calibration FAQ
-  Lock down admin and reviewer Controler:actions
-    is there and easy way for this?
-      an application function?
-    Do all distance work in DB.
-    Shops don't work if you're not signed in?
-    ADD review scorer system to DB
+  Lock down admin and reviewer Controler: actions, get with JP?
+  is there and easy way for this?
+  an application function?
+  
+  Make pretty. nick?
+  Set a score that shops won't show below. where is this stored? DB?
+  when non admin/reviewer signed in, don't show inactive shops. (or shops below the minScore)
+  make shops/ map prettier and add labels.
+  profile save pictures.
+  add pictures to reviews (drink).
+  add pictures to shops.
+  show scores in 0-100 range? (option for 0-6?)
+  getUserName function? (or should I write better queries?)
+  getShopName function? (or should I write better queries?)
+  debugging: show all queries that ran?
+  v2 - directions to shops?
+  
     
   
   

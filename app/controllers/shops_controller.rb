@@ -21,10 +21,16 @@ class ShopsController < ApplicationController
           ORDER BY distanceToMyLocation
           ")
       else
-        @shops = Shop.find(
-              :all, 
-              :include => [:reviews],
-              :select => "'' AS distanceToMyLocation")
+        @shops = Shop.connection.select_all("
+            SELECT 
+            s.*,
+            NULL AS locationName,
+            NULL AS locationAddress,
+            NULL  AS distanceToMyLocation,
+            getShopReviewScore(s.id) AS shopScore
+          FROM
+            shops s
+               ")
       end
       
       

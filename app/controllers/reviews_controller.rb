@@ -20,8 +20,15 @@ class ReviewsController < ApplicationController
   # GET /reviews/1
   # GET /reviews/1.xml
   def show
-    @review = Review.find(params[:id], :include => [:user, :shop])
-
+    @review = Review.connection.select_all("
+      SELECT 
+        r.*,
+        s.name as shopName,
+        getReviewScore(r.id) as reviewScore
+      FROM reviews r
+      JOIN shops s on r.shop_id = s.id
+      WHERE r.id = #{params[:id]}
+    ")
     
     respond_to do |format|
       format.html # show.html.erb

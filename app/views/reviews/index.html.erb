@@ -25,10 +25,8 @@
     <td><%= review['DripScore']  %></td>
     <td><%= review['PersonalityScore']  %></td>
     <td><%= review['AtmosphereScore']  %></td>
-    <td><%= 
-    decimalPlaces(review['reviewScore'],2) 
-    %></td>
-    <td><%= link_to 'Show', review %></td>
+    <td><%= decimalPlaces(review['reviewScore'],2) %></td>
+    <td><%= link_to 'Show', "reviews/#{review['id']}" %></td>
     <% if !current_user.nil? && (current_user.admin || (current_user.reviewer && current_user.id == review.user_id))%>
         <td><%= link_to 'Edit', edit_review_path(review['id']) %></td>
         <td>

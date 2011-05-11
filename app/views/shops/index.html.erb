@@ -36,17 +36,17 @@
   <tr class="<%= cycle("d0","d1")%>">
     <td><%= link_to shop['name'], "shops/#{shop['id']}" %></td>
     <td><%= shop['address'] %></td>
-    <td><%= shop['shopScore'] %></td>
-    <td><%= shop['distanceToMyLocation'] %> mi</td>
+    <td><%= decimalPlaces(shop['shopScore'],2) %></td>
+    <td><%= decimalPlaces(shop['distanceToMyLocation'],2) %> mi</td>
     <% if !current_user.nil? && current_user.admin %>
         <td><%= link_to 'Edit', edit_shop_path(shop) %></td>
         <td>
-            <% if !shop['isActive'] %>
-                <%= link_to 'Activate', activate_shops_path(shop['id']) %>
-            <% else %>
+            <% if Integer(shop['isActive']) > 0 %>
                 <%= link_to 'Deactivate', shop['id'], :method => :delete %>
+            <% else %>
+                <%= link_to 'Activate', activate_shops_path(shop['id']) %>
             <% end %>
-                <%= link_to 'X', demolish_shops_path(shop['id']), :confirm => 'Are you sure?' %>
+            <%= link_to 'X', demolish_shops_path(shop['id']), :confirm => 'Are you sure?' %>
         </td>
     <% else %>
         <td> </td>
