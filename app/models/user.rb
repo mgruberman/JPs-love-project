@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   include OmniAuthPopulator
   include Sluggable
-
+  
   before_validation :generate_slug, :on => :create
   
   validates_uniqueness_of :slug
@@ -36,7 +36,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :omniauthable, :validatable #:flexible_devise_validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :name, :slug, :admin, :reviewer
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :name, :slug, :admin, :reviewer, :photo_id
 
   def self.new_with_session(params, session)
     super.tap do |user|

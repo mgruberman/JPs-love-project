@@ -6,6 +6,7 @@ class RegistrationsController < Devise::RegistrationsController
   end
   
   def update
+
     if resource.update_attributes(params[resource_name])
       set_flash_message :notice, :updated
       redirect_to profile_path(resource)

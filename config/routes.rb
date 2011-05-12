@@ -1,5 +1,7 @@
 OmniauthDeviseExample::Application.routes.draw do |map|
 
+  resources :image_stores
+
   resources :user_locations
 
   map.connect "reviews/activate/:id", :controller => "reviews", :action => "activate"
@@ -7,8 +9,8 @@ OmniauthDeviseExample::Application.routes.draw do |map|
   map.connect "reviews/demolish/:id", :controller => "reviews", :action => "demolish"
   map.connect "shops/demolish/:id", :controller => "shops", :action => "demolish"
   map.connect "user_locations/set_default/:id", :controller => "user_locations", :action => "set_default"
+  map.connect "image_stores/code_image/:id", :controller => "image_stores", :action => "code_image"
 
-  
 
   resources :badges
 

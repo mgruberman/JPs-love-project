@@ -1,0 +1,21 @@
+<h1>Listing image_stores</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @image_stores.each do |image_store| %>
+  <tr>
+    <td><%= link_to 'Show', image_store %></td>
+    <td><%= link_to 'Edit', edit_image_store_path(image_store) %></td>
+    <td><%= link_to 'Destroy', image_store, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Image store', new_image_store_path %>

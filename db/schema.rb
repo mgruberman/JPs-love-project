@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110509172014) do
+ActiveRecord::Schema.define(:version => 20110512154413) do
 
   create_table "badges", :force => true do |t|
     t.string   "name"
@@ -18,6 +18,15 @@ ActiveRecord::Schema.define(:version => 20110509172014) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "isActive",    :default => true
+  end
+
+  create_table "image_stores", :force => true do |t|
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "content_type"
+    t.string   "filename"
+    t.binary   "binary_data"
   end
 
   create_table "relationtype", :force => true do |t|
@@ -41,6 +50,7 @@ ActiveRecord::Schema.define(:version => 20110509172014) do
     t.float    "AtmosphereScore"
     t.boolean  "isActive",         :default => true
     t.float    "DripScore"
+    t.integer  "photo_id"
   end
 
   create_table "sharings", :force => true do |t|
@@ -72,6 +82,7 @@ ActiveRecord::Schema.define(:version => 20110509172014) do
     t.datetime "updated_at"
     t.boolean  "gmaps"
     t.boolean  "isActive",    :default => false
+    t.integer  "photo_id"
   end
 
   create_table "user_badges", :force => true do |t|
@@ -139,6 +150,7 @@ ActiveRecord::Schema.define(:version => 20110509172014) do
     t.boolean  "admin",                               :default => false
     t.boolean  "reviewer",                            :default => false
     t.boolean  "isActive",                            :default => true
+    t.integer  "photo_id"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

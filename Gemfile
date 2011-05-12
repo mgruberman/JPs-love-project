@@ -14,6 +14,8 @@ gem 'gmaps4rails'
 gem 'exception_notification', :require => 'exception_notifier'
 gem 'yaml_db'
 gem 'mysql'
+gem 'image_science'
+
 
 
 group :development, :test do
