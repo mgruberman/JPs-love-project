@@ -3,12 +3,15 @@ class ReviewsController < ApplicationController
   # GET /reviews.xml
   def index
     @reviews = Review.connection.select_all("
-      SELECT 
-        r.*,
-        s.name as shopName,
-        getReviewScore(r.id) as reviewScore
+      SELECT r.*, 
+      s.name as shopName,
+      u.name as userName,
+      b.name as baristaName,
+      getReviewScore(r.id) as reviewScore
       FROM reviews r
       JOIN shops s on r.shop_id = s.id
+      JOIN users u on r.user_id = u.id
+      LEFT OUTER JOIN barista b ON r.barista_id = b.id
     ")
 
     respond_to do |format|
@@ -21,12 +24,15 @@ class ReviewsController < ApplicationController
   # GET /reviews/1.xml
   def show
     @review = Review.connection.select_all("
-      SELECT 
-        r.*,
-        s.name as shopName,
-        getReviewScore(r.id) as reviewScore
+      SELECT r.*, 
+      s.name,
+      u.name,
+      b.name,
+      getReviewScore(r.id) as reviewScore
       FROM reviews r
       JOIN shops s on r.shop_id = s.id
+      JOIN users u on r.user_id = u.id
+      LEFT OUTER JOIN barista b ON r.barista_id = b.id
       WHERE r.id = #{params[:id]}
     ")
     

@@ -4,13 +4,14 @@
   <tr>
     <th>Shop</th>
     <th>Description</th>
-    <th>Cap</th>
-    <th>Esp</th>
-    <th>Drip</th>
-    <th>Pers</th>
-    <th>Atmo</th>
+    <th>C</th>
+    <th>E</th>
+    <th>D</th>
+    <th>P</th>
+    <th>A</th>
     <th>Total</th>
-
+    <th>reviewer</th>
+    <th>barista</th>
     <th></th>
     <th></th>
     <th></th>
@@ -26,6 +27,12 @@
     <td><%= review['PersonalityScore']  %></td>
     <td><%= review['AtmosphereScore']  %></td>
     <td><%= decimalPlaces(review['reviewScore'],2) %></td>
+    <td><%= link_to review['userName'], :controller => "profiles", :action => "show", :id => review['user_id'] %></td>
+    <td>
+        <% if !review['baristaName'].nil? %>
+            <%= link_to review['baristaName'], "barista/#{review['barista_id']}" %>
+        <% end %>
+    </td>
     <td><%= link_to 'Show', "reviews/#{review['id']}" %></td>
     <% if !current_user.nil? && (current_user.admin || (current_user.reviewer && current_user.id == review.user_id))%>
         <td><%= link_to 'Edit', edit_review_path(review['id']) %></td>

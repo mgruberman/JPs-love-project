@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Shop id:</b>
+  <%= @favorite_shop.shop_Id %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @favorite_shop.user_id %>
+</p>
+
+<p>
+  <b>Isactive:</b>
+  <%= @favorite_shop.isActive %>
+</p>
+
+
+<%= link_to 'Edit', edit_favorite_shop_path(@favorite_shop) %> |
+<%= link_to 'Back', favorite_shops_path %>

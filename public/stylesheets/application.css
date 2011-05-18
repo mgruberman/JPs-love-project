@@ -8,16 +8,15 @@ body {
 }
 
 a {
-    text-decoration: none;
-    color: blue;
+    color: #404040;
 }
 
 a:visited {
-    color: green;
+    color: #404040;
 }
 
 a:visited {
-    color: green;
+    color: #404040;
 }
 h1 {
   font-size: 20px;
@@ -45,7 +44,7 @@ h3 {
     height: auto !important;
     height: 100%;
     margin: 0 auto -45px; /* the bottom margin is the negative value of the footer's height */
-    background: white;
+    background: #ece9da;
     border-left: 1px solid #ccc;
     border-right: 1px solid #ccc;
     padding: 10px 20px 0 20px;

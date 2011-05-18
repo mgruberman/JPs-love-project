@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110512154413) do
+ActiveRecord::Schema.define(:version => 20110518225502) do
 
   create_table "badges", :force => true do |t|
     t.string   "name"
@@ -18,6 +18,22 @@ ActiveRecord::Schema.define(:version => 20110512154413) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "isActive",    :default => true
+  end
+
+  create_table "barista", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.integer  "photo_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "favorite_shops", :force => true do |t|
+    t.integer  "shop_Id"
+    t.integer  "user_id"
+    t.boolean  "isActive",   :default => true
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "image_stores", :force => true do |t|
@@ -51,6 +67,7 @@ ActiveRecord::Schema.define(:version => 20110512154413) do
     t.boolean  "isActive",         :default => true
     t.float    "DripScore"
     t.integer  "photo_id"
+    t.integer  "barista_id"
   end
 
   create_table "sharings", :force => true do |t|
@@ -61,7 +78,7 @@ ActiveRecord::Schema.define(:version => 20110512154413) do
     t.boolean  "isActive",   :default => true
   end
 
-  create_table "shop_checkin", :force => true do |t|
+  create_table "shop_checkins", :force => true do |t|
     t.integer  "shop_ID"
     t.integer  "user_ID"
     t.datetime "created_at"

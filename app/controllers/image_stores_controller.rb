@@ -1,6 +1,6 @@
 class ImageStoresController < ApplicationController
-  # GET /image_stores
-  # GET /image_stores.xml
+  # GET /image_stores/1
+  # GET /image_stores/1.xml
   def code_image 
     #TODO: this is the current user, but we can change this to call it from different places.
 

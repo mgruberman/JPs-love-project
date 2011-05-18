@@ -21,11 +21,13 @@
 <body>
 
 <div class="page_content">
+  <%= image_tag "header.gif" %>
   <div id="user_nav">
 
     <%= link_to 'Home', '/' %> |
     <%= link_to 'Shop', '/shops' %> |
     <%= link_to 'Reviews', '/reviews' %> |
+    <%= link_to 'Baristas', '/barista' %> |
     <% if user_signed_in? %>
     	<% if current_user.admin %>
     		<%= link_to 'Admin', '#' %> |
@@ -40,8 +42,6 @@
         <%= link_to "sign in", new_user_session_path %>
     <% end %>
   </div>
-
-  <h1 class="site-title">Coffee Compass</h1>
   <%= raw notice_html %>
   <%= raw alert_html %>
 
@@ -71,24 +71,48 @@ TODO:
   
   Make pretty. nick?
   Set a score that shops won't show below. where is this stored? DB?
+  same with baristas.
+  
   when non admin/reviewer signed in, don't show inactive shops. (or shops below the minScore)
   make shops/ map prettier and add labels.
   profile save pictures.
   add pictures to reviews (drink).
   add pictures to shops.
+  add pictures to baristas.
+  
   show scores in 0-100 range? (option for 0-6?)
-  getUserName function? (or should I write better queries?)
-  getShopName function? (or should I write better queries?)
   debugging: show all queries that ran?
   v2 - directions to shops?
   Add city, like yelp?
   user favorite shops?
   
+  user checkins.
+  
   homepage: 
     add most recent reviews, 10?
     highest shops?
-  
+    highest baristas?
     
+    limit google maps when there gets to be many shops. 
+    pick a random shop and show x miles around it. (if not logged in, or no location set)
+    
+ baristas don't show up if they don't hit a score?
+  -how do we handle this? grey the name out? don't show the name at all?
+  -how do we handle the extreme situation of privacy from an abusive stalker?
+    - opt in? 
+    - barista can opt out when ever they want.
+  
+ badges
+  - have lots of easy badges
+  - lots of med
+  - lots of hard
+  
+  - 1st check in
+  - venture x miles away (multiple - 10, 100, 1000?)
+  - 1st favorite
+  - 1st location
+  - coffee events! Coffee fest, etc.
+  
   
   
 -->

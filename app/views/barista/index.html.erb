@@ -1,0 +1,25 @@
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Photo</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @barista.each do |baristum| %>
+  <tr>
+    <td><%= baristum.name %></td>
+    <td><%= baristum.description %></td>
+    <td><%= baristum.photo_id %></td>
+    <td><%= link_to 'Show', baristum %></td>
+    <td><%= link_to 'Edit', edit_baristum_path(baristum) %></td>
+    <td><%= link_to 'Destroy', baristum, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Baristum', new_baristum_path %>

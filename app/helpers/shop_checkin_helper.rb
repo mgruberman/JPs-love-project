@@ -1,0 +1,2 @@
+module ShopCheckinHelper
+end

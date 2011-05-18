@@ -1,24 +1,4 @@
-<h1>shops</h1>
-<% if !current_user.nil? %>
-    <table>
-        <tr>
-            <th align=left>&nbsp;&nbsp;&nbsp;&nbsp;My Location <%= link_to '(change)', '/user_locations' %>
-            </th>
-        </tr>
-        <tr>
-            <td align=left>
-            <% 
-                @shops.each do |shop| 
-            %>
-            <%= shop['locationName'] %>: <%= shop['locationAddress'] %>
-            <% 
-                break
-                end
-            %>
-            </td>
-        </tr>
-    </table>
-<% end %>
+<% @markers = '[' %>
 <table>
   <tr>
     <th>Name</th>
@@ -28,9 +8,32 @@
     <th></th>
     <th></th>
   </tr>
+  
+<% if !current_user.nil? 
+    @shops.each do |shop| 
+       $uAddress = shop['locationAddress']
+       $uName = shop['locationName']
+       $uLat = shop['userLatitude']
+       $uLong = shop['userLongitude']
+       $uName = shop['locationName']
+
+       #Add myLocation ---
+        @markers = @markers + "{\"description\": \"\", \"title\": \"My Location: #{$uName}\", \"sidebar\": \"\", \"longitude\": \"#{$uLong}\", \"latitude\": \"#{$uLat}\", \"picture\": \"images/google-map-blue.png\", \"width\": \"32\", \"height\": \"32\"},"
+    end %>
+    <tr>
+        <td colspan = 2>My Location (<%= $uName %>): <%= $uAddress %></td>
+        <td></td>
+        <td>0.00</td>
+        <td colspan = 3><%= link_to '(change)', '/user_locations' %></td>
+    </tr>
+<% end %>
+
+
 
 <% 
+
 @shops.each do |shop| 
+@markers = @markers + "{\"description\": \"\", \"title\": \"#{shop["name"]}\", \"sidebar\": \"\", \"longitude\": \"#{shop["longitude"]}\", \"latitude\": \"#{shop["latitude"]}\", \"picture\": \"\", \"width\": \"\", \"height\": \"\"},"
 %>
 
   <tr class="<%= cycle("d0","d1")%>">
@@ -54,8 +57,12 @@
     <% end %>
     
   </tr>
+<% 
+end
+@markers = @markers + ']'
 
-<% end %>
+
+ %>
 </table>
 
 <% if !current_user.nil? && (current_user.admin || current_user.reviewer ) %>
@@ -64,6 +71,37 @@
 
 <br />
 
-<%= gmaps4rails(@json) %>
+<!-- 
+
+TODO: if the user is logged in, map myLocationm if not, center on a random shop
+Then pick the zoom ratio, based on the distance to the Nth shop?
+
+--> 
+
+<%=
+
+    gmaps(
+        "markers" => {
+            "data" => @markers, 
+            "options" => {
+                #"list_container" => "markers_list", 
+                "do_clustering" => true 
+             } 
+          },
+          "map_options" => { 
+            "id" => "gmaps4rails_map" , 
+            "zoom" =>13, 
+            "auto_adjust" => true, 
+            "center_latitude" => $uLat,  
+            "center_longitude" => $uLong
+         }
+      )
+
+ %>
+<%= 
+#old
+#gmaps4rails(@json) 
+%>
+
 
 

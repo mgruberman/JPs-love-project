@@ -1,16 +1,21 @@
-<h1><%= @user.display_name %>'s Profile</h1>
+<p id="notice"><%= notice %></p>
 
-<%= image_tag("/image_stores/code_image/#{@user.photo_id}", :alt => "Image") %>
+<p>
+  <b>Name:</b>
+  <%= @baristum.name %>
+</p>
 
-<div>
+<p>
+  <b>Description:</b>
+  <%= @baristum.description %>
+</p>
 
-  Name: <%= @user.name   %><br/>
-  Email: <%= @user.email %><br/>
-  Administrator: <%= @user.admin   %><br/>
-  Reviewer: <%= @user.reviewer %><br/>
-  
-  <table>
-  <% for r in @reviews %>
+<p>
+  <b>Photo:</b>
+  <%= @baristum.photo_id %>
+</p>
+<table>
+<% for r in @reviews %>
     <tr class="<%= cycle("d1","d0")%>"> <td>
     Date: <%= r.created_at %> 
     <%= link_to r.shop.name, :controller => "shops", :action => "show", :id => r.shop.id %> -- 
@@ -24,5 +29,6 @@
     <%= link_to "(show review)", :controller => "reviews", :action => "show", :id => r %>
     </td></tr>
   <% end %>
- </table>
-</div>
+</table>
+<%= link_to 'Edit', edit_baristum_path(@baristum) %> |
+<%= link_to 'Back', barista_path %>

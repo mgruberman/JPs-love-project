@@ -10,6 +10,8 @@ class ShopsController < ApplicationController
             s.*,
             u.name AS locationName,
             u.address AS locationAddress,
+            u.latitude AS userLatitude,
+            u.longitude AS userLongitude,
             getDistance(u.latitude,u.longitude,s.latitude,s.longitude)  * 69.078  AS distanceToMyLocation,
             getShopReviewScore(s.id) AS shopScore
           FROM
