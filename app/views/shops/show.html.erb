@@ -5,13 +5,13 @@
 %>
   <tr>
     <td VALIGN=TOP>
-      <h2><%= shop['name'] %> <% if !current_user.nil? %><%= link_to "(Check in)", "/shop_checkin/create/#{shop['id']}"  %> <% end %></h2>
+      <h2><%= shop['name'] %> <% if !current_user.nil? %><%= link_to "(Check in)", "/shop_checkin/create/#{shop['id']}"  %><% end %></h2>
       <h3><%= shop['address'] %></h3>
       <h3><%= decimalPlaces(shop['shopScore'],2) %></h3>
+      <%= image_tag "star.gif" %><%= image_tag "star_empty.gif" %>
     </td>
    </tr><tr>
     <td VALIGN=TOP>
-     
       <%= 
         gmaps("markers" => {"data" => @json, "options" => {"do_clustering" => true } },
           "map_options" => { "id" => "gmaps4rails_shop" , "zoom" => 13, "auto_zoom" => false, "auto_adjust" => false, "center_latitude" => shop['latitude'],  "center_longitude" => shop['longitude']}) %>

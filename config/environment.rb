@@ -25,3 +25,14 @@ require File.expand_path('../application', __FILE__)
 # Initialize the rails application
 OmniauthDeviseExample::Application.initialize!
 
+ActionMailer::Base.delivery_method = :smtp
+ActionMailer::Base.default_content_type = "text/html"
+
+ActionMailer::Base.smtp_settings = {
+   :address => "Smtpout.secureserver.net",
+   :port => 25,
+   :authentication => :login,
+   :user_name => "dan@neptunecoffee.com",
+   :password => "25042504"
+}
+
