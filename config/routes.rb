@@ -11,6 +11,12 @@ OmniauthDeviseExample::Application.routes.draw do |map|
 
   resources :user_locations
   
+  map.connect "favorite_shops/activate/:id", :controller => "favorite_shops", :action => "activate"
+  map.connect "favorite_shops/deactivate/:id", :controller => "favorite_shops", :action => "deactivate"
+  #why isn't this working?
+  map.connect "favorite_shops/activateIndex/:id", :controller => "favorite_shops", :action => "activateIndex"
+  map.connect "favorite_shops/deactivateIndex/:id", :controller => "favorite_shops", :action => "deactivateIndex"
+  
   map.connect "reviews/activate/:id", :controller => "reviews", :action => "activate"
   map.connect "shops/activate/:id", :controller => "shops", :action => "activate"
   map.connect "reviews/demolish/:id", :controller => "reviews", :action => "demolish"

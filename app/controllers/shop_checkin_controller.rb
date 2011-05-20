@@ -10,7 +10,7 @@ class ShopCheckinController < ApplicationController
 	respond_to do |format|
 	  if @ShopCheckin.save
 	  	@user = User.find(current_user.id)
-	  	Notifier.welcome_email(@user).deliver
+	  	#Notifier.welcome_email(@user).deliver
 		
 		format.html { redirect_to("shops/#{params[:shop_id]}", :notice => 'You checked in here') }
 		format.xml  { render :xml => @ShopCheckin, :status => :created, :location => "shops/#{params[:shop_id]}" }

@@ -36,6 +36,64 @@ class FavoriteShopsController < ApplicationController
   def edit
     @favorite_shop = FavoriteShop.find(params[:id])
   end
+  
+  def activateIndex
+    #TODO: how do I call activate here?
+    #shop_id is being passed in
+    @favorite_shop = FavoriteShop.new(:shop_Id => "#{params[:id]}", :user_id => "#{current_user.id}")
+
+    if @favorite_shop.save
+      #TODO: add some error messages
+      $favoriteNotice = 'favorited!'
+    else
+      #TODO: add some error messages
+      $favoriteNotice = 'NOT favorited!'
+    end
+
+    respond_to do |format|
+      format.html { redirect_to("/shops/") }
+      format.xml  { head :ok }
+    end
+  end
+  
+  def deactivateIndex
+    #TODO: how do I call deactivate here?
+    #shop_id is being passed in
+    #@favorite_shop = FavoriteShop.find(:all, :conditions => {:shop_Id => "#{params[:id]}", :user_id => "#{current_user.id}"})
+    FavoriteShop.destroy_all( :shop_Id => "#{params[:id]}" , :user_id => "#{current_user.id}" )
+
+    respond_to do |format|
+      format.html { redirect_to("/shops/") }
+      format.xml  { head :ok }
+    end
+  end
+  
+  def activate
+    #shop_id is being passed in
+    @favorite_shop = FavoriteShop.new(:shop_Id => "#{params[:id]}", :user_id => "#{current_user.id}")
+    
+    if @favorite_shop.save
+      #TODO: add some error messages
+    else
+      #TODO: add some error messages
+    end
+    
+    respond_to do |format|
+      format.html { redirect_to("/shops/#{params[:id]}") }
+      format.xml  { head :ok }
+    end
+  end
+  
+  def deactivate
+    #shop_id is being passed in
+    #@favorite_shop = FavoriteShop.find(:all, :conditions => {:shop_Id => "#{params[:id]}", :user_id => "#{current_user.id}"})
+    FavoriteShop.destroy_all( :shop_Id => "#{params[:id]}" , :user_id => "#{current_user.id}" )
+    
+    respond_to do |format|
+      format.html { redirect_to("/shops/#{params[:id]}") }
+      format.xml  { head :ok }
+    end
+  end
 
   # POST /favorite_shops
   # POST /favorite_shops.xml

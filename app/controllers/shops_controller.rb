@@ -13,13 +13,12 @@ class ShopsController < ApplicationController
             u.latitude AS userLatitude,
             u.longitude AS userLongitude,
             getDistance(u.latitude,u.longitude,s.latitude,s.longitude)  * 69.078  AS distanceToMyLocation,
-            getShopReviewScore(s.id) AS shopScore
+            getShopReviewScore(s.id) AS shopScore,
+            f.isActive AS FavoriteIsActive
           FROM
-            shops s,
-            user_locations u
-          WHERE 
-            u.isDefaultLocation = 1 AND
-            u.user_id = #{current_user.id}
+            shops s
+            JOIN user_locations u ON (u.isDefaultLocation = 1 AND u.user_id = #{current_user.id})
+            LEFT OUTER JOIN favorite_shops f ON (f.user_id = #{current_user.id} AND f.shop_id = s.id)
           ORDER BY distanceToMyLocation
           ")
       else
@@ -29,7 +28,8 @@ class ShopsController < ApplicationController
             NULL AS locationName,
             NULL AS locationAddress,
             NULL  AS distanceToMyLocation,
-            getShopReviewScore(s.id) AS shopScore
+            getShopReviewScore(s.id) AS shopScore,
+            NULL AS FavoriteIsActive
           FROM
             shops s
                ")
@@ -52,13 +52,13 @@ class ShopsController < ApplicationController
             u.name AS locationName,
             u.address AS locationAddress,
             getDistance(u.latitude,u.longitude,s.latitude,s.longitude)  * 69.078  AS distanceToMyLocation,
-            getShopReviewScore(s.id) AS shopScore
+            getShopReviewScore(s.id) AS shopScore,
+            f.isActive AS FavoriteIsActive
           FROM
-            shops s,
-            user_locations u
+            shops s
+            JOIN user_locations u ON (u.user_id = #{current_user.id} AND u.isDefaultLocation = 1)
+            LEFT OUTER JOIN favorite_shops f ON (f.user_id = #{current_user.id} AND f.shop_id = #{params[:id]})
           WHERE 
-            u.isDefaultLocation = 1 AND
-            u.user_id = #{current_user.id} AND
             s.id = #{params[:id]}
           ")
       else
@@ -68,7 +68,8 @@ class ShopsController < ApplicationController
             NULL AS locationName,
             NULL AS locationAddress,
             NULL  AS distanceToMyLocation,
-            getShopReviewScore(s.id) AS shopScore
+            getShopReviewScore(s.id) AS shopScore,
+            NULL AS FavoriteIsActive
           FROM
             shops s
           WHERE 

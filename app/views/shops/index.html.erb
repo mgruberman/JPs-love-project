@@ -7,6 +7,7 @@
     <th>Distance:</th>
     <th></th>
     <th></th>
+    <th></th>
   </tr>
   
 <% if !current_user.nil? 
@@ -25,6 +26,7 @@
         <td></td>
         <td>0.00</td>
         <td colspan = 3><%= link_to '(change)', '/user_locations' %></td>
+        <td></td>
     </tr>
 <% end %>
 
@@ -42,6 +44,13 @@
     <td><%= decimalPlaces(shop['shopScore'],2) %></td>
     <td><%= decimalPlaces(shop['distanceToMyLocation'],2) %> mi</td>
     <% if !current_user.nil? && current_user.admin %>
+        <td>
+            <% if shop['FavoriteIsActive'] %>
+                <%= link_to(image_tag("star_sm.gif", :border =>0), "/favorite_shops/deactivateIndex/#{shop['id']}") %>
+            <% else %>
+                <%= link_to(image_tag("star_empty_sm.gif", :border =>0), "/favorite_shops/activateIndex/#{shop['id']}") %>
+            <% end %>
+        </td>
         <td><%= link_to 'Edit', edit_shop_path(shop) %></td>
         <td>
             <% if Integer(shop['isActive']) > 0 %>
@@ -52,6 +61,7 @@
             <%= link_to 'X', demolish_shops_path(shop['id']), :confirm => 'Are you sure?' %>
         </td>
     <% else %>
+        <td> </td>
         <td> </td>
         <td> </td>
     <% end %>
