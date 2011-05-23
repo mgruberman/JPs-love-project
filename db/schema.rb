@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(:version => 20110518225502) do
   end
 
   create_table "favorite_shops", :force => true do |t|
-    t.integer  "shop_Id"
+    t.integer  "shop_id"
     t.integer  "user_id"
     t.boolean  "isActive",   :default => true
     t.datetime "created_at"
@@ -79,8 +79,8 @@ ActiveRecord::Schema.define(:version => 20110518225502) do
   end
 
   create_table "shop_checkins", :force => true do |t|
-    t.integer  "shop_ID"
-    t.integer  "user_ID"
+    t.integer  "shop_id"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "isActive",   :default => true

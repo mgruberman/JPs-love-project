@@ -1,21 +1,21 @@
 OmniauthDeviseExample::Application.routes.draw do |map|
 
-  resources :favorite_shops
-
+  resources :badges
   resources :barista
-  resources :shop_checkin
-
-  resources :baristas
-
+  #resources :baristas
+  resources :favorite_shops
   resources :image_stores
-
+  resources :reviews
+  resources :sharings
+  resources :shops
+  resources :shop_checkins
   resources :user_locations
   
   map.connect "favorite_shops/activate/:id", :controller => "favorite_shops", :action => "activate"
   map.connect "favorite_shops/deactivate/:id", :controller => "favorite_shops", :action => "deactivate"
-  #why isn't this working?
   map.connect "favorite_shops/activateIndex/:id", :controller => "favorite_shops", :action => "activateIndex"
   map.connect "favorite_shops/deactivateIndex/:id", :controller => "favorite_shops", :action => "deactivateIndex"
+  map.connect "favorite_shops/deactivateFavoriteIndex/:id", :controller => "favorite_shops", :action => "deactivateFavoriteIndex"
   
   map.connect "reviews/activate/:id", :controller => "reviews", :action => "activate"
   map.connect "shops/activate/:id", :controller => "shops", :action => "activate"
@@ -25,14 +25,6 @@ OmniauthDeviseExample::Application.routes.draw do |map|
   map.connect "image_stores/code_image/:id", :controller => "image_stores", :action => "code_image"
   map.connect "shop_checkin/create/:shop_id", :controller => "shop_checkin", :action => "create"
 
-
-  resources :badges
-
-  resources :shops
-
-  resources :reviews
-
-  resources :sharings
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", :registrations => 'registrations'}
   
   root :to => "shops#index"

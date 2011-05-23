@@ -2,8 +2,9 @@ class FavoriteShopsController < ApplicationController
   # GET /favorite_shops
   # GET /favorite_shops.xml
   def index
-    @favorite_shops = FavoriteShop.all
-
+    @favorite_shops = FavoriteShop.find(:all, :include => :shop, :conditions => "user_id = #{current_user.id} AND isActive = 1")
+    @json = Shop.find(:all, :include => :favorite_shops, :conditions => "favorite_shops.user_id = #{current_user.id} AND favorite_shops.isActive = 1").to_gmaps4rails
+    
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @favorite_shops }
@@ -40,7 +41,7 @@ class FavoriteShopsController < ApplicationController
   def activateIndex
     #TODO: how do I call activate here?
     #shop_id is being passed in
-    @favorite_shop = FavoriteShop.new(:shop_Id => "#{params[:id]}", :user_id => "#{current_user.id}")
+    @favorite_shop = FavoriteShop.new(:shop_id => "#{params[:id]}", :user_id => "#{current_user.id}")
 
     if @favorite_shop.save
       #TODO: add some error messages
@@ -56,11 +57,20 @@ class FavoriteShopsController < ApplicationController
     end
   end
   
+  def deactivateFavoriteIndex
+    FavoriteShop.destroy_all( :shop_id => "#{params[:id]}" , :user_id => "#{current_user.id}" )
+
+    respond_to do |format|
+      format.html { redirect_to("/favorite_shops/") }
+      format.xml  { head :ok }
+    end
+  end
+  
   def deactivateIndex
     #TODO: how do I call deactivate here?
     #shop_id is being passed in
     #@favorite_shop = FavoriteShop.find(:all, :conditions => {:shop_Id => "#{params[:id]}", :user_id => "#{current_user.id}"})
-    FavoriteShop.destroy_all( :shop_Id => "#{params[:id]}" , :user_id => "#{current_user.id}" )
+    FavoriteShop.destroy_all( :shop_id => "#{params[:id]}" , :user_id => "#{current_user.id}" )
 
     respond_to do |format|
       format.html { redirect_to("/shops/") }
@@ -70,7 +80,7 @@ class FavoriteShopsController < ApplicationController
   
   def activate
     #shop_id is being passed in
-    @favorite_shop = FavoriteShop.new(:shop_Id => "#{params[:id]}", :user_id => "#{current_user.id}")
+    @favorite_shop = FavoriteShop.new(:shop_id => "#{params[:id]}", :user_id => "#{current_user.id}")
     
     if @favorite_shop.save
       #TODO: add some error messages
@@ -87,7 +97,7 @@ class FavoriteShopsController < ApplicationController
   def deactivate
     #shop_id is being passed in
     #@favorite_shop = FavoriteShop.find(:all, :conditions => {:shop_Id => "#{params[:id]}", :user_id => "#{current_user.id}"})
-    FavoriteShop.destroy_all( :shop_Id => "#{params[:id]}" , :user_id => "#{current_user.id}" )
+    FavoriteShop.destroy_all( :shop_id => "#{params[:id]}" , :user_id => "#{current_user.id}" )
     
     respond_to do |format|
       format.html { redirect_to("/shops/#{params[:id]}") }

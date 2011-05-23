@@ -22,10 +22,10 @@
         @markers = @markers + "{\"description\": \"\", \"title\": \"My Location: #{$uName}\", \"sidebar\": \"\", \"longitude\": \"#{$uLong}\", \"latitude\": \"#{$uLat}\", \"picture\": \"images/google-map-blue.png\", \"width\": \"32\", \"height\": \"32\"},"
     end %>
     <tr>
-        <td colspan = 2>My Location (<%= $uName %>): <%= $uAddress %></td>
+        <td colspan = 2><%= link_to "My Location (#{$uName})", '/user_locations' %>: <%= $uAddress %></td>
         <td></td>
         <td>0.00</td>
-        <td colspan = 3><%= link_to '(change)', '/user_locations' %></td>
+        <td colspan = 3></td>
         <td></td>
     </tr>
 <% end %>

@@ -32,9 +32,11 @@
     	<% if current_user.admin %>
     		<%= link_to 'Admin', '#' %> |
     	<% end %>
+        
         <%= link_to 'Sharing', sharings_path %> |
         <%= link_to 'Profile', profile_path(current_user) %> |
         <%= link_to 'Edit Profile', edit_user_registration_path(current_user) %> |
+        <%= link_to 'Favorites', '/favorite_shops' %> |
         <%= link_to 'My Locations', '/user_locations' %> |
         <%= link_to "Sign out", destroy_user_session_path %>
     <% else %>
@@ -84,9 +86,9 @@ TODO:
   debugging: show all queries that ran?
   v2 - directions to shops?
   Add city, like yelp?
-  user favorite shops?
-  
-  user checkins.
+
+  ADD - user checkins page
+  ADD - validation to models
   
   homepage: 
     add most recent reviews, 10?
@@ -113,7 +115,8 @@ TODO:
   - 1st location
   - coffee events! Coffee fest, etc.
   
-  
+ Checkin -
+  how often can they check in?
   
 -->
 </body>
