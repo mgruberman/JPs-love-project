@@ -36,8 +36,9 @@
         <%= link_to 'Sharing', sharings_path %> |
         <%= link_to 'Profile', profile_path(current_user) %> |
         <%= link_to 'Edit Profile', edit_user_registration_path(current_user) %> |
-        <%= link_to 'Favorites', '/favorite_shops' %> |
+        <%= link_to 'My Favorites', '/favorite_shops' %> |
         <%= link_to 'My Locations', '/user_locations' %> |
+        <%= link_to 'My Checkins', '/shop_checkins' %> | 
         <%= link_to "Sign out", destroy_user_session_path %>
     <% else %>
         <%= link_to "Sign up", new_user_registration_path %> |
@@ -66,45 +67,82 @@
 <script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script>
 <!--
 TODO:
-  ADD Calibration FAQ
-  Lock down admin and reviewer Controler: actions, get with JP?
+CODE:
+
+  Lock down admin and reviewer Controler: actions,
+  LOCK DOWN ALL ACTIONS THAT REQUIRE YOU TO BE LOGGED IN
   is there and easy way for this?
   an application function?
+  DATE FORMATTING!!!!! from the DB, make that pretty
+  Solution for image uploading? (Ruby group)
+    add pictures to all (reviews, shops, baristas and users)
+  ADD - validation to models
+  ADD - relationships to models
+  debugging: show all queries that ran?
   
+FAQ
+  calabration page
+  help pages
+    what do we need here?
+  mission statement page?
+  about us page?
+  
+GRAPHICS
   Make pretty. nick?
-  Set a score that shops won't show below. where is this stored? DB?
-  same with baristas.
+  Icons
+    (We can have a mix of words and icons)
+    settings 
+      gear
+    friends
+      people
+    my
+      person?
+    shops?
+    reviews?
+    baristas?
+      portafilter?
+
   
+SHOPS
+  Set a score that shops won't show below. where is this stored? DB?
   when non admin/reviewer signed in, don't show inactive shops. (or shops below the minScore)
   make shops/ map prettier and add labels.
-  profile save pictures.
-  add pictures to reviews (drink).
-  add pictures to shops.
-  add pictures to baristas.
+  directions to shops?
   
+SETTINGS
   show scores in 0-100 range? (option for 0-6?)
-  debugging: show all queries that ran?
-  v2 - directions to shops?
-  Add city, like yelp?
-
-  ADD - user checkins page
-  ADD - validation to models
-  
-  homepage: 
-    add most recent reviews, 10?
-    highest shops?
-    highest baristas?
+  emails sent?
+  ADD - a my page, with links to all the my pages?
+    -my locations, my reviews, my etc...
     
-    limit google maps when there gets to be many shops. 
-    pick a random shop and show x miles around it. (if not logged in, or no location set)
-    
- baristas don't show up if they don't hit a score?
+BARISTAS:
+  add images?
+  set a score that baristas won't show below (in DB?)
+  baristas don't show up if they don't hit a score?
   -how do we handle this? grey the name out? don't show the name at all?
   -how do we handle the extreme situation of privacy from an abusive stalker?
     - opt in? 
     - barista can opt out when ever they want.
+    - how? email me?
+  can we link to Bx?
+    pull the pictures from it?
+    
+USER_RELATIONSHIPS
+  ADD - Friends? v2?
+  ADD - follow reviewers.
   
- badges
+HOME PAGE: 
+    add most recent reviews, 10?
+    highest shops?
+    highest baristas?
+    
+    Cache all home page queries for once a day?
+    
+    limit google maps when there gets to be many shops. 
+      how many shops show? 20? 10? 
+    pick a random shop and show x miles around it. (if not logged in, or no location set)
+    
+BADGES
   - have lots of easy badges
   - lots of med
   - lots of hard
@@ -114,10 +152,40 @@ TODO:
   - 1st favorite
   - 1st location
   - coffee events! Coffee fest, etc.
+  how do we hide badges from prying eyes?
   
- Checkin -
+CHECKIN
   how often can they check in?
+  where is this logic?
   
+COMMENTS 
+  add comments on reviews?
+  add comments on shops?
+  how are these moderated?
+  
+ADMIN
+  ALL REVIEW AND...
+  what do admin need?
+  approve shops
+
+REVIEWERS
+  what do reviewers need?
+    suggest shops
+    see followers?
+    A/E/D reviews
+    see all shops regardless of score
+      same or diff page?
+
+SHARING
+  FACEBOOK!!!!!
+  TWITTER
+  get these turned on.
+  
+V2
+  generate random coffee crawl?
+    input
+      address
+      num of shops?
 -->
 </body>
 </html>

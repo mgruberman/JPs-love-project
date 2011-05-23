@@ -20,7 +20,9 @@ class User < ActiveRecord::Base
   has_many :sharings
   has_many :reviews
   has_many :user_locations
-
+  has_many :favorite_shops
+  has_many :shop_checkins
+  
   has_attached_file :photo,
                     :styles => {
                             :mini => "40x40#",

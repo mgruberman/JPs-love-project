@@ -1,12 +1,21 @@
 class ShopCheckinController < ApplicationController
+	# GET /shop_checkins
+	# GET /shop_checkins.xml
+	def index
+		@shop_checkins = ShopCheckin.find(:all, :include => :shop, :conditions => "user_id = #{current_user.id}")
+		
+		respond_to do |format|
+			format.html # index.html.erb
+			format.xml  { render :xml => @shop_checkins }
+		end
+	end
+
 	def create
 	#TODO: add logic to make sure you can't check in more than x times / time??
 	#params[:shop_id]
 	#current_user.id
 	
 	@ShopCheckin = ShopCheckin.new(:shop_ID => "#{params[:shop_id]}", :user_ID => "#{current_user.id}")
-	
-	
 	respond_to do |format|
 	  if @ShopCheckin.save
 	  	@user = User.find(current_user.id)
@@ -20,4 +29,7 @@ class ShopCheckinController < ApplicationController
 	  end
 	end
   end
+  
+
+  
 end
