@@ -2,7 +2,6 @@ OmniauthDeviseExample::Application.routes.draw do |map|
 
   resources :badges
   resources :barista
-  #resources :baristas
   resources :favorite_shops
   resources :image_stores
   resources :reviews
@@ -13,9 +12,6 @@ OmniauthDeviseExample::Application.routes.draw do |map|
   
   map.connect "favorite_shops/activate/:id", :controller => "favorite_shops", :action => "activate"
   map.connect "favorite_shops/deactivate/:id", :controller => "favorite_shops", :action => "deactivate"
-  map.connect "favorite_shops/activateIndex/:id", :controller => "favorite_shops", :action => "activateIndex"
-  map.connect "favorite_shops/deactivateIndex/:id", :controller => "favorite_shops", :action => "deactivateIndex"
-  map.connect "favorite_shops/deactivateFavoriteIndex/:id", :controller => "favorite_shops", :action => "deactivateFavoriteIndex"
   
   map.connect "reviews/activate/:id", :controller => "reviews", :action => "activate"
   map.connect "shops/activate/:id", :controller => "shops", :action => "activate"
@@ -24,7 +20,11 @@ OmniauthDeviseExample::Application.routes.draw do |map|
   map.connect "user_locations/set_default/:id", :controller => "user_locations", :action => "set_default"
   map.connect "image_stores/code_image/:id", :controller => "image_stores", :action => "code_image"
   map.connect "shop_checkin/create/:shop_id", :controller => "shop_checkin", :action => "create"
-
+  map.connect "profiles/subscribe/:id", :controller => "profiles", :action => "subscribe"
+  map.connect "profiles/unsubscribe/:id", :controller => "profiles", :action => "unsubscribe"
+  map.connect "profiles/friend/:id", :controller => "profiles", :action => "friend"
+  map.connect "profiles/unfriend/:id", :controller => "profiles", :action => "unfriend"
+    
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", :registrations => 'registrations'}
   
   root :to => "shops#index"

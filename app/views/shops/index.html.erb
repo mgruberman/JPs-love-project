@@ -46,9 +46,9 @@
     <% if !current_user.nil? && current_user.admin %>
         <td>
             <% if shop['FavoriteIsActive'] %>
-                <%= link_to(image_tag("star_sm.gif", :border =>0), "/favorite_shops/deactivateIndex/#{shop['id']}") %>
+                <%= link_to(image_tag("star_sm.gif", :border =>0), "/favorite_shops/deactivate/#{shop['id']}") %>
             <% else %>
-                <%= link_to(image_tag("star_empty_sm.gif", :border =>0), "/favorite_shops/activateIndex/#{shop['id']}") %>
+                <%= link_to(image_tag("star_empty_sm.gif", :border =>0), "/favorite_shops/activate/#{shop['id']}") %>
             <% end %>
         </td>
         <td><%= link_to 'Edit', edit_shop_path(shop) %></td>

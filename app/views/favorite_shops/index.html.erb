@@ -1,4 +1,4 @@
-<h1>Listing favorite_shops</h1>
+<h1>My Favorite Shops</h1>
 
 <table>
   <tr>
@@ -13,7 +13,7 @@
   <tr>
     <td><%= link_to favorite_shop.shop.name, "shops/#{favorite_shop.shop_id}" %></td>
     <td><%= favorite_shop.shop.address %></td>
-    <td><%= link_to(image_tag("star_sm.gif", :border =>0), "/favorite_shops/deactivateFavoriteIndex/#{favorite_shop.shop_id}") %></td>
+    <td><%= link_to(image_tag("star_sm.gif", :border =>0), "/favorite_shops/deactivate/#{favorite_shop.shop_id}") %></td>
     <!--<td><%= link_to 'Show', favorite_shop %></td>
     <td><%= link_to 'Edit', edit_favorite_shop_path(favorite_shop) %></td>
     <td><%= link_to 'Destroy', favorite_shop, :confirm => 'Are you sure?', :method => :delete %></td>-->
