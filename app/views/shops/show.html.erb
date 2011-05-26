@@ -1,53 +1,54 @@
 <p id="notice"><%= notice %></p>
 <table>
-<% 
-@shop.each do |shop| 
-%>
   <tr>
     <td VALIGN=TOP>
-      <h2><%= shop['name'] %> <% if !current_user.nil? %><%= link_to "(Check in)", "/shop_checkin/create/#{shop['id']}"  %><% end %></h2>
-      <h3><%= shop['address'] %></h3>
-      <h3><%= decimalPlaces(shop['shopScore'],2) %></h3>
+      <h2><%= @shop.name %> <% if !current_user.nil? %><%= link_to "(Check in)", "/shop_checkin/create/#{@shop.id}"  %><% end %></h2>
+      <h3><%= @shop.address %></h3>
+      <h3>#score</h3>
+<%
+=begin %>
       <% if shop['FavoriteIsActive'] %>
         <%= link_to(image_tag("star.gif", :border =>0), "/favorite_shops/deactivate/#{shop['id']}") %>
       <% else %>
         <%= link_to(image_tag("star_empty.gif", :border =>0), "/favorite_shops/activate/#{shop['id']}") %>
       <% end %>
+<%
+=end %>
     </td>
    </tr><tr>
     <td VALIGN=TOP>
       <%= 
         gmaps("markers" => {"data" => @json, "options" => {"do_clustering" => true } },
-          "map_options" => { "id" => "gmaps4rails_shop" , "zoom" => 13, "auto_zoom" => false, "auto_adjust" => false, "center_latitude" => shop['latitude'],  "center_longitude" => shop['longitude']}) %>
+          "map_options" => { "id" => "gmaps4rails_shop" , "zoom" => 13, "auto_zoom" => false, "auto_adjust" => false, "center_latitude" => @shop.latitude,  "center_longitude" => @shop.longitude}) %>
     </td>
   </tr>
 
   <% for r in @reviews %>
     <tr class="<%= cycle("d1","d0")%>">
       <td colspan=2">
-  Date: <%= Time.zone.parse(r['created_at'].to_s) %> 
-  -- Capp Score: <%= r['CappuccinoScore'] %> 
-  -- Espresso Score: <%= r['EspressoScore'] %> 
-  -- Drip Score: <%= r['DripScore'] %>
-  --  Atmosphere Score: <%= r['AtmosphereScore'] %> 
-  -- Personality Score: <%= r['PersonalityScore'] %> 
-  -- Total Score: <%= decimalPlaces(r['reviewScore'],2) %><br>
-  <%= truncate(r['description'], :length => 200, :omission => '...') %> 
-  <%= link_to "(show review)", :controller => "reviews", :action => "show", :id => r['id'] %>
+  Date: <%= Time.zone.parse(r.created_at.to_s) %> 
+  -- Capp Score: <%= r.CappuccinoScore %> 
+  -- Espresso Score: <%= r.EspressoScore %> 
+  -- Drip Score: <%= r.DripScore %>
+  --  Atmosphere Score: <%= r.AtmosphereScore %> 
+  -- Personality Score: <%= r.PersonalityScore %> 
+  -- Total Score: <%= #decimalPlaces(r.reviewScore,2) 
+                  %><br>
+  <%= truncate(r.description, :length => 200, :omission => '...') %> 
+  <%= link_to "(show review)", :controller => "reviews", :action => "show", :id => r.id %>
       </td>
     </tr>
 <% end %>
  </table>
   <% if !current_user.nil? && current_user.admin %>
-    <%= link_to 'Edit', edit_shop_path(shop) %> |
+    <%= link_to 'Edit', edit_shop_path(@shop) %> |
   
-    <% if !shop['isActive'] %>
-       <%= link_to 'Activate', activate_shops_path(shop['id']) %>
+    <% if !@shop.isActive %>
+       <%= link_to 'Activate', activate_shops_path(@shop.id) %>
     <% else %>
        <%= link_to 'Deactivate', shop, :method => :delete %>
     <% end %>
-    | <%= link_to 'X', demolish_shops_path(shop['id']), :confirm => 'Are you sure?' %> 
+    | <%= link_to 'X', demolish_shops_path(@shop.id), :confirm => 'Are you sure?' %> 
     | <%= link_to 'New Review', new_review_path %> 
   <% end %>
-<% end %>
 

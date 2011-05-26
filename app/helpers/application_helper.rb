@@ -94,4 +94,65 @@ module ApplicationHelper
         x
     end
   end
+  
+  def slider(attributes={})
+  unless attributes.nil? then
+  values=attributes[:values]
+  default_value=attributes[:default_value].to_s
+  object=attributes[:object].to_s
+  instance=attributes[:instance].to_s
+  unit=attributes[:unit] || ""
+  text_div_id=object + "_" + instance + "_slider_text_div"
+  slider_id=object + "_" + instance + "_slider"
+
+  concat(raw(
+    "<div id=\"#{slider_id}\" class=\"slider\">
+       <div class=\"handle\"></div>
+     </div>"
+  ))
+
+  concat(raw(hidden_field(object, instance, :value => default_value.to_f)))
+  concat(raw("<div id=\"#{text_div_id}\">" + default_value + " " + unit + "</div>"))
+
+  js_text = <<JS3
+  (function() {
+    var zoom_slider = $('#{slider_id}');
+    var text_div = $('#{text_div_id}');
+    var hidden_item = $('#{object + "_" + instance}');
+    var values=#{values.inspect};
+
+    var values_length = values.length;
+    var min=40;
+    var max=200;
+
+    var unit = Math.ceil((max - min) / values_length);
+    var range = $R(min, max - unit);
+
+    var pix_values = new Array();
+    for(i=1;i<=values_length;i++){
+      pix_values[i-1]=min + (unit * (i - 1));
+    }
+
+    var default_value=pix_values[#{values.index(default_value.to_f)}];
+
+    new Control.Slider(zoom_slider.down('.handle'), zoom_slider, {
+      range: range,
+      sliderValue: default_value,
+            increment: unit,
+            values: pix_values,
+      onSlide: function(value) {
+                text_div.innerHTML=values[pix_values.indexOf(value)] + " #{unit}";
+                hidden_item.value=values[pix_values.indexOf(value)];
+      },
+      onChange: function(value) { 
+                text_div.innerHTML=values[pix_values.indexOf(value)] + " #{unit}";
+                hidden_item.value=values[pix_values.indexOf(value)];
+      }
+    });
+  })();
+
+JS3
+      concat(raw(javascript_tag(js_text)))
+  end
+end
 end

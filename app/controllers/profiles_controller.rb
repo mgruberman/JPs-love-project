@@ -11,10 +11,10 @@ class ProfilesController < ApplicationController
       redirect_to '/'
     end
     @reviews = Review.find(:all, :conditions => {:user_id => @user.id}, :include => :shop)
-    @image_store = ImageStore.find(@user.photo_id)
+        #@image_store = ImageStore.find(@user.photo_id)
         #relating user is the user who initiated the request, 
         #related is the targeted user.
-    @user_relations = UserRelation.find(:all, :conditions => "RelatingUserID IN (#{current_user.id}) AND RelatedUserID IN (#{@user.id})")
+        #@user_relations = UserRelation.find(:all, :conditions => "RelatingUserID IN (#{current_user.id}) AND RelatedUserID IN (#{@user.id})")
   end
   
   def subscribe

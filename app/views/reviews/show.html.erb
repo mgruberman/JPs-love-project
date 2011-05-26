@@ -1,54 +1,60 @@
+<% @review.each do |r| %>
+
 <p id="notice"><%= notice %></p>
-<% @review.each do |review| %>
+
 <p>
   <b>Shop:</b>
-   <%= link_to review['shopName'], :controller => "shops", :action => "show", :id => review['shop_id'] %>
+   <%= 
+   link_to r.shop.name, :controller => "shops", :action => "show", :id => r.shop_id  
+   %>
 </p>
 
 <p>
   <b>Description:</b>
-  <%= review['description'] %>
+  <%= r.description %>
 </p>
 
 <p>
   <b>Cappuccino score:</b>
-  <%= review['CappuccinoScore'] %>
+  <%= r.CappuccinoScore %>
 </p>
 
 <p>
   <b>Espresso score:</b>
-  <%= review['EspressoScore'] %>
+  <%= r.EspressoScore %>
 </p>
 <p>
   <b>Drip score:</b>
-  <%= review['DripScore'] %>
+  <%= r.DripScore %>
 </p>
 <p>
   <b>Personality score:</b>
-  <%= review['PersonalityScore'] %>
+  <%= r.PersonalityScore %>
 </p>
 
 <p>
   <b>Atmosphere score:</b>
-  <%= review['AtmosphereScore'] %>
+  <%= r.AtmosphereScore %>
 </p>
 
 <p>
   <b>Total Score:</b>
-  <%= decimalPlaces(review['reviewScore'],2) %>
+  <%= 
+  #decimalPlaces(r.reviewScore,2) 
+  %>
 </p>
 
 
 
 <br>
-<% if !current_user.nil? && (current_user.admin || (current_user.reviewer && current_user.id == review['user_id']))%>
-  <%= link_to 'Edit', edit_review_path(review['id']) %> | 
-  <% if !review['isActive'] %>
-     <%= link_to 'Activate', activate_reviews_path(review['id']) %>
+<% if !current_user.nil? && (current_user.admin || (current_user.reviewer && current_user.id == r.user_id))%>
+  <%= link_to 'Edit', edit_review_path(r.id) %> | 
+  <% if !r.isActive %>
+     <%= link_to 'Activate', activate_reviews_path(r.id) %>
   <% else %>
-     <%= link_to 'Deactivate', review['id'], :method => :delete %>
+     <%= link_to 'Deactivate', demolish_reviews_path(r.id), :method => :delete %>
   <% end %>
-     <%= link_to 'X', demolish_reviews_path(review['id']), :confirm => 'Are you sure you want to delete?' %>
+     <%= link_to 'X', demolish_reviews_path(r.id), :confirm => 'Are you sure you want to delete?' %>
 <% end %>
 <%= link_to 'Back', reviews_path %>
 <% end %>

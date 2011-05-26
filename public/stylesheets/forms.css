@@ -12,7 +12,7 @@ form > div {
 .simple_form {
     width: 400px;
 }
-input.string, input.password, textarea {
+input.string, input.password {
     border-width: 1px;
     border-style: solid;
     border-top-color: #999999;

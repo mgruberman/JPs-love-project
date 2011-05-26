@@ -2,15 +2,18 @@
 $ur_rows = 0
 $ur_isActive = false
 
-for ur in @user_relations 
-    $ur_rows = $ur_rows + 1
-    $ur_isActive = ur.isActive
-end 
+#for ur in @user_relations 
+#    $ur_rows = $ur_rows + 1
+#    $ur_isActive = ur.isActive
+#end 
 %>
 
 <h1><%= @user.display_name %>'s Profile</h1>
 
-<%= image_tag("/image_stores/code_image/#{@user.photo_id}", :alt => "Image") %>
+<%= 
+#TODO: add images
+#image_tag("/image_stores/code_image/#{@user.photo_id}", :alt => "Image") 
+%>
 
 <div>
 
@@ -18,10 +21,11 @@ end
   Email: <%= @user.email %><br/>
   Administrator: <%= @user.admin   %><br/>
   Reviewer: <%= @user.reviewer %><br/>
-    
+<%
+=begin 
+#TODO: fix this %>
     <% if @user.reviewer %>
         <% if $ur_rows > 0 && $ur_isActive %>
-            
             <%= link_to "unsubscribe", :controller => "profiles", :action => "unsubscribe", :id => @user.id %>
         <% else %>
             <%= link_to "subscribe", :controller => "profiles", :action => "subscribe", :id => @user.id %>
@@ -36,7 +40,10 @@ end
             <%= link_to "friend", :controller => "profiles", :action => "friend", :id => @user.id %>
         <% end %>
     <% end %>
-  
+<%
+=end
+%>
+<br>
   <table>
   <% for r in @reviews %>
     <tr class="<%= cycle("d1","d0")%>"> <td>

@@ -2,39 +2,19 @@ class ShopsController < ApplicationController
   # GET /shops
   # GET /shops.xml
   def index
-    	
-    	@json = Shop.all.to_gmaps4rails
+    	#TODO: add favorite shops back in later. prolly in session?
+    	@shops = Shop.all
+        @json = @shops.to_gmaps4rails
+        
+        
       if !current_user.nil?
-        @shops = Shop.connection.select_all("
-          SELECT 
-            s.*,
-            u.name AS locationName,
-            u.address AS locationAddress,
-            u.latitude AS userLatitude,
-            u.longitude AS userLongitude,
-            getDistance(u.latitude,u.longitude,s.latitude,s.longitude)  * 69.078  AS distanceToMyLocation,
-            getShopReviewScore(s.id) AS shopScore,
-            f.isActive AS FavoriteIsActive
-          FROM
-            shops s
-            JOIN user_locations u ON (u.isDefaultLocation = 1 AND u.user_id = #{current_user.id})
-            LEFT OUTER JOIN favorite_shops f ON (f.user_id = #{current_user.id} AND f.shop_id = s.id)
-          ORDER BY distanceToMyLocation
-          ")
+        #@reviews = Review.find(:all, :conditions => {:barista_id => @baristum.id}, :include => :shop)
+        #@favorite_shops = FavoriteShop.find(:all, :include => :shop, :conditions => "user_id = #{current_user.id} AND isActive = 1")
+        @user_locations = UserLocation.where(:user_id => current_user.id, :isDefaultLocation => true)
       else
-        @shops = Shop.connection.select_all("
-            SELECT 
-            s.*,
-            NULL AS locationName,
-            NULL AS locationAddress,
-            NULL  AS distanceToMyLocation,
-            getShopReviewScore(s.id) AS shopScore,
-            NULL AS FavoriteIsActive
-          FROM
-            shops s
-               ")
+        #@favorite_shops = FavoriteShop.new
+        @user_locations = UserLocation.new
       end
-      
       
     respond_to do |format|
       format.html # index.html.erb
@@ -45,49 +25,12 @@ class ShopsController < ApplicationController
   # GET /shops/1
   # GET /shops/1.xml
   def show
-    if !current_user.nil?
-        @shop = Shop.connection.select_all("
-          SELECT 
-            s.*,
-            u.name AS locationName,
-            u.address AS locationAddress,
-            getDistance(u.latitude,u.longitude,s.latitude,s.longitude)  * 69.078  AS distanceToMyLocation,
-            getShopReviewScore(s.id) AS shopScore,
-            f.isActive AS FavoriteIsActive
-          FROM
-            shops s
-            JOIN user_locations u ON (u.user_id = #{current_user.id} AND u.isDefaultLocation = 1)
-            LEFT OUTER JOIN favorite_shops f ON (f.user_id = #{current_user.id} AND f.shop_id = #{params[:id]})
-          WHERE 
-            s.id = #{params[:id]}
-          ")
-      else
-        @shop = Shop.connection.select_all("
-          SELECT 
-            s.*,
-            NULL AS locationName,
-            NULL AS locationAddress,
-            NULL  AS distanceToMyLocation,
-            getShopReviewScore(s.id) AS shopScore,
-            NULL AS FavoriteIsActive
-          FROM
-            shops s
-          WHERE 
-            s.id = #{params[:id]}
-          ")
-      end
-      
-    #shop_id = params[:id]
-    @reviews = Review.connection.select_all("
-      SELECT 
-        r.*,
-        getReviewScore(r.id) as reviewScore
-      FROM reviews r
-      WHERE r.shop_ID = #{params[:id]}
-    ")
     
-    @json = Shop.find(params[:id]).to_gmaps4rails
-
+    @shop = Shop.find(params[:id])
+    @json = @shop.to_gmaps4rails
+    
+    @reviews = Review.where(:shop_id => params[:id] )
+    
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @shop }

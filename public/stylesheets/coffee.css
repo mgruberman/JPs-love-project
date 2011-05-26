@@ -12,3 +12,17 @@ tr.d1 td {
     font-size:   13px;
     line-height: 18px;
 }
+div.slider {
+ width:256px;
+ margin:10px 0;
+ background-color:#ccc;
+ height:10px;
+ position: relative;
+}
+
+div.slider div.handle {
+ width:10px;
+ height:15px;
+ background-color:#f00;
+ cursor:move;
+ position: absolute;

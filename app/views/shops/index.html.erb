@@ -11,12 +11,11 @@
   </tr>
   
 <% if !current_user.nil? 
-    @shops.each do |shop| 
-       $uAddress = shop['locationAddress']
-       $uName = shop['locationName']
-       $uLat = shop['userLatitude']
-       $uLong = shop['userLongitude']
-       $uName = shop['locationName']
+    @user_locations.each do |u| 
+       $uAddress = u.address
+       $uName = u.name
+       $uLat = u.latitude
+       $uLong = u.longitude
 
        #Add myLocation ---
         @markers = @markers + "{\"description\": \"\", \"title\": \"My Location: #{$uName}\", \"sidebar\": \"\", \"longitude\": \"#{$uLong}\", \"latitude\": \"#{$uLat}\", \"picture\": \"images/google-map-blue.png\", \"width\": \"32\", \"height\": \"32\"},"
@@ -45,15 +44,19 @@
     <td><%= decimalPlaces(shop['distanceToMyLocation'],2) %> mi</td>
     <% if !current_user.nil? && current_user.admin %>
         <td>
+<%
+=begin %>
             <% if shop['FavoriteIsActive'] %>
                 <%= link_to(image_tag("star_sm.gif", :border =>0), "/favorite_shops/deactivate/#{shop['id']}") %>
             <% else %>
                 <%= link_to(image_tag("star_empty_sm.gif", :border =>0), "/favorite_shops/activate/#{shop['id']}") %>
             <% end %>
+<%
+=end %>
         </td>
         <td><%= link_to 'Edit', edit_shop_path(shop) %></td>
         <td>
-            <% if Integer(shop['isActive']) > 0 %>
+            <% if shop['isActive'] %>
                 <%= link_to 'Deactivate', shop['id'], :method => :delete %>
             <% else %>
                 <%= link_to 'Activate', activate_shops_path(shop['id']) %>

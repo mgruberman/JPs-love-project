@@ -2,17 +2,7 @@ class ReviewsController < ApplicationController
   # GET /reviews
   # GET /reviews.xml
   def index
-    @reviews = Review.connection.select_all("
-      SELECT r.*, 
-      s.name as shopName,
-      u.name as userName,
-      b.name as baristaName,
-      getReviewScore(r.id) as reviewScore
-      FROM reviews r
-      JOIN shops s on r.shop_id = s.id
-      JOIN users u on r.user_id = u.id
-      LEFT OUTER JOIN barista b ON r.barista_id = b.id
-    ")
+    @reviews = Review.find(:all, :include => [:shop, :baristum, :user] )
 
     respond_to do |format|
       format.html # index.html.erb
@@ -23,18 +13,7 @@ class ReviewsController < ApplicationController
   # GET /reviews/1
   # GET /reviews/1.xml
   def show
-    @review = Review.connection.select_all("
-      SELECT r.*, 
-      s.name,
-      u.name,
-      b.name,
-      getReviewScore(r.id) as reviewScore
-      FROM reviews r
-      JOIN shops s on r.shop_id = s.id
-      JOIN users u on r.user_id = u.id
-      LEFT OUTER JOIN barista b ON r.barista_id = b.id
-      WHERE r.id = #{params[:id]}
-    ")
+    @review = Review.find(:all, :conditions => {:id => params[:id]}, :include => [:shop, :user, :baristum,] )
     
     respond_to do |format|
       format.html # show.html.erb

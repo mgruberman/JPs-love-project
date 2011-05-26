@@ -20,27 +20,68 @@
   
   <div class="field">
     <%= f.label :description %><br />
-    <%= f.text_area :description %>
+    <%= f.text_area :description, :cols => 80 %>
   </div>
   <div class="field">
     <%= f.label :CappuccinoScore %><br />
-    <%= f.text_field :CappuccinoScore %>
+    <%= 
+    #f.text_field :CappuccinoScore 
+    %>
+
+    <% slider :object        => "review",
+          :instance      => "CappuccinoScore",
+          :unit          => "",
+          :values        => [0.0, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0, 5.5, 6.0].sort,
+          :default_value => "#{number_with_precision(@review.CappuccinoScore, :precision => 1)}"  %>
+
   </div>
   <div class="field">
     <%= f.label :EspressoScore %><br />
-    <%= f.text_field :EspressoScore %>
+    <%= 
+    #f.text_field :EspressoScore 
+    %>
+
+    <% slider :object        => "review",
+          :instance      => "EspressoScore",
+          :unit          => "",
+          :values        => [0.0, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0, 5.5, 6.0].sort,
+          :default_value => number_with_precision(@review.EspressoScore, :precision => 1)  %>
   </div>
   <div class="field">
     <%= f.label :DripScore %><br />
-    <%= f.text_field :DripScore %>
+    <%= 
+    #f.text_field :DripScore 
+    %>
+
+    <% slider :object        => "review",
+          :instance      => "DripScore",
+          :unit          => "",
+          :values        => [0.0, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0, 5.5, 6.0].sort,
+          :default_value => number_with_precision(@review.DripScore, :precision => 1) %>
   </div>
   <div class="field">
     <%= f.label :PersonalityScore %><br />
-    <%= f.text_field :PersonalityScore %>
+    <%= 
+    #f.text_field :PersonalityScore 
+    %>
+
+    <% slider :object        => "review",
+          :instance      => "PersonalityScore",
+          :unit          => "",
+          :values        => [0.0, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0, 5.5, 6.0].sort,
+          :default_value => number_with_precision(@review.PersonalityScore, :precision => 1) %>
   </div>
   <div class="field">
     <%= f.label :AtmosphereScore %><br />
-    <%= f.text_field :AtmosphereScore %>
+    <%= 
+    #f.text_field :AtmosphereScore 
+    %>
+
+    <% slider :object        => "review",
+          :instance      => "AtmosphereScore",
+          :unit          => "",
+          :values        => [0.0, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0, 5.5, 6.0].sort,
+          :default_value => number_with_precision(@review.AtmosphereScore, :precision => 1) %>
   </div>
   <div class="actions">
     <%= f.submit %>

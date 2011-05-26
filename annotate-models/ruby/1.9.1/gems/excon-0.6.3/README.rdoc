@@ -1,0 +1,87 @@
+= excon
+
+Http(s) EXtended CONnections
+
+== Getting Started
+
+  sudo gem install excon
+
+Now you are ready to get started using one off requests.
+
+  require 'rubygems'
+  require 'excon'
+  Excon.get('http://geemus.com')
+
+The returned response object has #body, #headers and #status attributes. Supported one off requests are #connect, #delete, #get, #head, #options, #post, #put, and #trace
+
+You can also create a connection to reuse across multiple requests (more performant!).
+
+  connection = Excon.new('http://geemus.com')
+  connection.request(:method => 'GET')
+
+Both one off and persistent connections also support many other options, for example:
+
+  Excon.get('http://geemus.com', :headers => {'Authorization' => 'Basic 0123456789ABCDEF'})
+  # or
+  connection.request(:method => 'GET', :headers => {'Authorization' => 'Basic 0123456789ABCDEF'})
+
+You can also stream responses by passing a block that will receive each chunk.
+
+  Excon.get('http://geemus.com') do |chunk, remaining_bytes, total_bytes|
+    puts chunk
+    puts "Remaining: #{remaining_bytes.to_f / total_bytes}%"
+  end
+
+These options can be combined to make pretty much any request you might need.
+
+== Proxy Support
+
+You can specify a proxy URL that Excon will use with both HTTP and HTTPS connections:
+
+  connection = Excon.new('http://geemus.com', :proxy => 'http://my.proxy:3128')
+  connection.request(:method => 'GET')
+
+The proxy URL must be fully specified, including scheme (e.g. "http://") and port.
+
+Excon will also use the environment variables "http_proxy" and "https_proxy" if they are present. "http_proxy" will be used for HTTPS connections if "https_proxy" is not set.
+
+Environment variables will take precedence over a :proxy option that has been specified in code.
+
+== HTTPS/SSL Issues
+
+By default excon will try to verify peer certificates when using ssl for https, unfortunately on some operating systems the defaults will not work. This will likely manifest itself as something like "Excon::Errors::SocketError: SSL_connect returned=1 ..."
+
+If you have the misfortune of running into this problem you have a couple options. First, if you have certificates in a location that defaults fail to locate you can set a different path to certificates:
+
+  Excon.ssl_ca_path = '/path/to/certs'
+
+or failing that, you can turn off peer verification (less secure):
+
+  Excon.ssl_verify_peer = false
+
+Either of these should allow you to work around the socket error and continue with getting your work done.
+
+== Copyright
+
+(The MIT License)
+
+Copyright (c) 2010 {geemus (Wesley Beary)}[http://github.com/geemus]
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
