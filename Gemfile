@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'bundler', '1.0.13'
+gem 'bundler', '1.0.7'
 gem 'pg'
 gem 'rake', '~> 0.8.7'
 gem 'rails', '3.0.5'
