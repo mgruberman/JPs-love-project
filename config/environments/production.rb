@@ -47,4 +47,9 @@ OmniauthDeviseExample::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
   
+  config.middleware.use ExceptionNotifier,
+  :email_prefix => "[EXP] ",
+  :sender_address => %{"Exception Notifier" <EXP@coffeeGetter.com>},
+  :exception_recipients => %w{thethirddan@gmail.com}
+  
 end

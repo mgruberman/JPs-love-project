@@ -3,8 +3,8 @@ class FavoriteShopsController < ApplicationController
   # GET /favorite_shops
   # GET /favorite_shops.xml
   def index
-    @favorite_shops = FavoriteShop.find(:all, :include => :shop, :conditions => "user_id = #{current_user.id} AND isActive = 1")
-    @json = Shop.find(:all, :include => :favorite_shops, :conditions => "favorite_shops.user_id = #{current_user.id} AND favorite_shops.isActive = 1").to_gmaps4rails
+    @favorite_shops = FavoriteShop.where(:user_id => current_user.id, :isActive => true)
+    @json = @favorite_shops.to_gmaps4rails
     
     respond_to do |format|
       format.html # index.html.erb

@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   include RedirectBack
-  
+  #include ExceptionNotifiable
+    
   helper_method :resource_class
   protect_from_forgery
 

@@ -22,5 +22,10 @@ OmniauthDeviseExample::Application.configure do
 
   # Only use best-standards-support built into browsers
   config.action_dispatch.best_standards_support = :builtin
+  
+    config.middleware.use ExceptionNotifier,
+  :email_prefix => "[EXP-dev] ",
+  :sender_address => %{"Exception Notifier DEV" <EXP-dev@coffeeGetter.com>},
+  :exception_recipients => %w{thethirddan@gmail.com}
 end
 
