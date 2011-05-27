@@ -1,5 +1,5 @@
 # encoding: utf-8
-
+=begin
 class ImageStoreUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or ImageScience support:
@@ -46,3 +46,4 @@ class ImageStoreUploader < CarrierWave::Uploader::Base
   # end
 
 end
+=end
