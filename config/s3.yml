@@ -1,0 +1,12 @@
+development:
+ bucket: coffeeGetterDev
+ access_key_id: AKIAJDCZARGDYXAMC2DA
+ secret_access_key: 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
+test:
+ bucket: coffeeGetterTest
+ access_key_id: AKIAJDCZARGDYXAMC2DA
+ secret_access_key: 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
+production:
+ bucket: coffeeGetter
+ access_key_id: AKIAISDLCUXXY2BTKD2Q
+ secret_access_key: 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

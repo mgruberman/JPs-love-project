@@ -16,7 +16,8 @@ gem 'gmaps4rails'
 gem 'exception_notification', :require => 'exception_notifier'
 gem 'yaml_db'
 #gem 'mysql'
-
+gem 'aws-s3'
+require 'pp'
 
 #gem 'carrierwave'
 #gem 'fog' #amazon s3

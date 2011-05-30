@@ -5,8 +5,7 @@
     <th>User</th>
     <th>Name</th>
     <th>Address</th>
-    <th>Longitude</th>
-    <th>Latitude</th>
+
     <th>isDefault</th>
     <th></th>
     <th></th>
@@ -17,8 +16,7 @@
     <td><%= user_location.user_id %></td>
     <td><%= user_location.name %></td>
     <td><%= user_location.address %></td>
-    <td><%= user_location.longitude %></td>
-    <td><%= user_location.latitude %></td>
+
     <td>
         <%= user_location.isDefaultLocation %>
         <%= link_to 'set', set_default_user_location_path(user_location.id) %>

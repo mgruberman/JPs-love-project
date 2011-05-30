@@ -22,7 +22,9 @@ class User < ActiveRecord::Base
   has_many :user_locations
   has_many :favorite_shops
   has_many :shop_checkins
+  has_many :photos
   
+=begin
   has_attached_file :photo,
                     :styles => {
                             :mini => "40x40#",
@@ -31,6 +33,7 @@ class User < ActiveRecord::Base
                             :big => "150x150#"
                     },
                     :default_url => "/images/user_photos/missing_:style.png"
+=end
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable, :lockable and :timeoutable

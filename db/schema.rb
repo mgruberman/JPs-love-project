@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110518225502) do
+ActiveRecord::Schema.define(:version => 20110527200846) do
 
   create_table "badges", :force => true do |t|
     t.string   "name"
@@ -45,6 +45,18 @@ ActiveRecord::Schema.define(:version => 20110518225502) do
     t.binary   "binary_data"
   end
 
+  create_table "photos", :force => true do |t|
+    t.string   "file_name"
+    t.string   "content_type"
+    t.integer  "file_size"
+    t.integer  "user_id"
+    t.integer  "barista_id"
+    t.integer  "review_id"
+    t.integer  "shop_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "relationtype", :force => true do |t|
     t.string   "name"
     t.string   "description"
@@ -68,6 +80,7 @@ ActiveRecord::Schema.define(:version => 20110518225502) do
     t.float    "DripScore"
     t.integer  "photo_id"
     t.integer  "barista_id"
+    t.integer  "baristum_id"
   end
 
   create_table "sharings", :force => true do |t|

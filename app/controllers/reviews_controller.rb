@@ -43,10 +43,21 @@ class ReviewsController < ApplicationController
   # POST /reviews.xml
   def create
     params[:review][:user_id] = current_user.id
+    pp(params[:review])
+    return render :text => "params[:review] is #{params[:review]}"
+    
+    @photoUpload = params[:review][:photo]
+    #return render :text => "@photoUpload is #{@photoUpload.inspect}"
+    
+    params[:review].delete("photo")
+    
     @review = Review.new(params[:review])
-
+    
     respond_to do |format|
       if @review.save
+        @photo = Photo.new(:photo => @photoUpload, :review_id => @review.id)
+        @photo.save
+        
         format.html { redirect_to(@review, :notice => 'Review was successfully created.') }
         format.xml  { render :xml => @review, :status => :created, :location => @review }
       else
